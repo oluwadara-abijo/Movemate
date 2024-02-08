@@ -3,11 +3,11 @@ package com.dara.movemate.ui.theme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
 
-val md_theme_light_primary = Color(0xFF664DAE)
+val md_theme_light_primary = Color(0xFF543b9b)
 val md_theme_light_onPrimary = Color(0xFFFFFFFF)
 val md_theme_light_primaryContainer = Color(0xFFE8DDFF)
 val md_theme_light_onPrimaryContainer = Color(0xFF21005E)
-val md_theme_light_secondary = Color(0xFF944A00)
+val md_theme_light_secondary = Color(0XFFF58426)
 val md_theme_light_onSecondary = Color(0xFFFFFFFF)
 val md_theme_light_secondaryContainer = Color(0xFFFFDCC5)
 val md_theme_light_onSecondaryContainer = Color(0xFF301400)

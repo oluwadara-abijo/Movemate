@@ -16,6 +16,7 @@ import com.dara.movemate.navigation.MovemateScreen.Calculate
 import com.dara.movemate.navigation.MovemateScreen.Home
 import com.dara.movemate.navigation.MovemateScreen.Profile
 import com.dara.movemate.navigation.MovemateScreen.Shipment
+import com.dara.movemate.ui.theme.MovemateColors
 
 @Composable
 fun MovemateAppBar(
@@ -23,7 +24,7 @@ fun MovemateAppBar(
     onBottomTabSelected: (BottomTab) -> Unit,
 ) {
     NavigationBar(
-        containerColor = MaterialTheme.colorScheme.background
+        containerColor = MovemateColors.background
     ) {
         BOTTOM_TABS.forEach { tab ->
             val isSelected = currentDestination?.route == tab.route
@@ -38,11 +39,11 @@ fun MovemateAppBar(
                 },
                 label = { Text(text = stringResource(id = tab.labelId)) },
                 colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = MaterialTheme.colorScheme.primary,
+                    selectedIconColor = MovemateColors.primary,
                     unselectedIconColor = Color.Gray,
-                    selectedTextColor = MaterialTheme.colorScheme.primary,
+                    selectedTextColor = MovemateColors.primary,
                     unselectedTextColor = Color.Gray,
-                    indicatorColor = MaterialTheme.colorScheme.background
+                    indicatorColor = MovemateColors.background
                 )
             )
 
