@@ -52,7 +52,7 @@ fun TrackingCard(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = DefaultPadding)
+            .padding(DefaultPadding)
             .background(
                 color = White,
                 shape = RoundedCornerShape(DefaultPadding)
