@@ -32,6 +32,11 @@ val md_theme_light_inversePrimary = Color(0xFFCEBDFF)
 val md_theme_light_surfaceTint = Color(0xFF664DAE)
 val md_theme_light_outlineVariant = Color(0xFFCAC4CF)
 val md_theme_light_scrim = Color(0xFF000000)
+val sender_box_background = Color(0xFFFDE6D4)
+val receiver_box_background = Color(0xFFD6F1DE)
+val indicator_color = Color(0xFF48CB2D)
+val light_orange = Color(0xFFDA955A)
+
 
 val MovemateColors = lightColorScheme(
     primary = md_theme_light_primary,
