@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -22,9 +21,10 @@ import com.dara.movemate.navigation.MovemateScreen.Home
 import com.dara.movemate.navigation.MovemateScreen.Profile
 import com.dara.movemate.navigation.MovemateScreen.Shipment
 import com.dara.movemate.ui.composables.CalculateScreen
-import com.dara.movemate.ui.composables.HomeScreen
+import com.dara.movemate.ui.composables.home.HomeScreen
 import com.dara.movemate.ui.composables.ProfileScreen
 import com.dara.movemate.ui.composables.ShipmentScreen
+import com.dara.movemate.ui.theme.MovemateColors
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -35,7 +35,7 @@ fun MovemateApp() {
 
     Scaffold(
         modifier = Modifier
-            .background(MaterialTheme.colorScheme.background)
+            .background(MovemateColors.background)
             .systemBarsPadding()
             .navigationBarsPadding(),
         bottomBar = {

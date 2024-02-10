@@ -4,4 +4,12 @@
     <string name="calculate">Calculate</string>
     <string name="shipment">Shipment</string>
     <string name="profile">Profile</string>
+    <string name="shipment_number">Shipment Number</string>
+    <string name="sender">Sender</string>
+    <string name="receiver">Receiver</string>
+    <string name="time">Time</string>
+    <string name="status">Status</string>
+    <string name="tracking">Tracking</string>
+    <string name="available_vehicles">Available vehicles</string>
+    <string name="search_hint">Enter the receipt number...</string>
 </resources>
