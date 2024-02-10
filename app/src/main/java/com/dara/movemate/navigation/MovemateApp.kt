@@ -12,10 +12,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.dara.movemate.R
 import com.dara.movemate.navigation.MovemateScreen.Calculate
 import com.dara.movemate.navigation.MovemateScreen.Home
 import com.dara.movemate.navigation.MovemateScreen.Profile
@@ -32,6 +34,8 @@ fun MovemateApp() {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
+    val shouldShowBottomBar =
+        !currentDestination?.route.equals(stringResource(id = R.string.calculate))
 
     Scaffold(
         modifier = Modifier
@@ -39,9 +43,10 @@ fun MovemateApp() {
             .systemBarsPadding()
             .navigationBarsPadding(),
         bottomBar = {
-            MovemateAppBar(
+            MovemateBottomBar(
                 currentDestination = currentDestination,
-                onBottomTabSelected = navController::navigateToBottomTab
+                onBottomTabSelected = navController::navigateToBottomTab,
+                isVisible = shouldShowBottomBar
             )
         },
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
