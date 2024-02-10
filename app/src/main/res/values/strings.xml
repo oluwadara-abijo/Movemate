@@ -12,4 +12,5 @@
     <string name="tracking">Tracking</string>
     <string name="available_vehicles">Available vehicles</string>
     <string name="search_hint">Enter the receipt number...</string>
+    <string name="destination">Destination</string>
 </resources>

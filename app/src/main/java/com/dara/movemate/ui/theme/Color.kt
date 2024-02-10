@@ -36,6 +36,7 @@ val sender_box_background = Color(0xFFFDE6D4)
 val receiver_box_background = Color(0xFFD6F1DE)
 val indicator_color = Color(0xFF48CB2D)
 val light_orange = Color(0xFFDA955A)
+val navy_blue = Color(0xFF242b39)
 
 
 val MovemateColors = lightColorScheme(
