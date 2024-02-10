@@ -57,7 +57,8 @@ enum class MovemateScreen {
     Home,
     Calculate,
     Shipment,
-    Profile
+    Profile,
+    Estimate,
 }
 
 data class BottomTab(

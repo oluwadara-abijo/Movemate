@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.dara.movemate.R
 import com.dara.movemate.ui.composables.Screen
 import com.dara.movemate.ui.composables.components.ActionButton
@@ -34,7 +35,8 @@ fun CalculateScreen(
                     ActionButton(
                         onButtonClick = onCalculateClicked,
                         label = R.string.calculate,
-                        paddingValues = PaddingValues(top = 48.dp)
+                        paddingValues = PaddingValues(top = 48.dp),
+                        labelFontSize = 22.sp
                     )
                 }
             }

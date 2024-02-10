@@ -19,12 +19,14 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.dara.movemate.R
 import com.dara.movemate.navigation.MovemateScreen.Calculate
+import com.dara.movemate.navigation.MovemateScreen.Estimate
 import com.dara.movemate.navigation.MovemateScreen.Home
 import com.dara.movemate.navigation.MovemateScreen.Profile
 import com.dara.movemate.navigation.MovemateScreen.Shipment
 import com.dara.movemate.ui.composables.ProfileScreen
 import com.dara.movemate.ui.composables.ShipmentScreen
 import com.dara.movemate.ui.composables.calculate.CalculateScreen
+import com.dara.movemate.ui.composables.calculate.EstimateScreen
 import com.dara.movemate.ui.composables.home.HomeScreen
 import com.dara.movemate.ui.theme.MovemateColors
 
@@ -34,8 +36,8 @@ fun MovemateApp() {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
-    val shouldShowBottomBar =
-        !currentDestination?.route.equals(stringResource(id = R.string.calculate))
+    val topLevelRoutes = listOf(Home.name, Shipment.name)
+    val shouldShowBottomBar = topLevelRoutes.contains(currentDestination?.route)
 
     Scaffold(
         modifier = Modifier
@@ -63,11 +65,12 @@ fun MovemateApp() {
             composable(Calculate.name) {
                 CalculateScreen(
                     navigateBack = navController::navigateUp,
-                    onCalculateClicked = {}
+                    onCalculateClicked = { navController.navigate(Estimate.name) }
                 )
             }
             composable(Shipment.name) { ShipmentScreen() }
             composable(Profile.name) { ProfileScreen() }
+            composable(Estimate.name) { EstimateScreen() }
         }
 
     }

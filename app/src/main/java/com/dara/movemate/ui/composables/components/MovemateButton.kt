@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dara.movemate.R
@@ -22,6 +23,7 @@ fun ActionButton(
     onButtonClick: () -> Unit,
     @StringRes label: Int,
     paddingValues: PaddingValues = PaddingValues(),
+    labelFontSize: TextUnit
 ) {
     Button(
         modifier = modifier
@@ -31,11 +33,11 @@ fun ActionButton(
         colors = ButtonDefaults.buttonColors(
             containerColor = MovemateColors.secondary
         ),
-        contentPadding = PaddingValues(20.dp)
+        contentPadding = PaddingValues(16.dp)
     ) {
         Text(
             text = stringResource(id = label),
-            fontSize = 24.sp
+            fontSize = labelFontSize
         )
     }
 }
@@ -43,5 +45,9 @@ fun ActionButton(
 @Preview
 @Composable
 fun ActionButtonPreview() {
-    ActionButton(onButtonClick = { }, label = R.string.calculate)
+    ActionButton(
+        onButtonClick = { },
+        label = R.string.calculate,
+        labelFontSize = 22.sp
+    )
 }
