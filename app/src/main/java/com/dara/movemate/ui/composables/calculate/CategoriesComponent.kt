@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -43,7 +44,9 @@ fun CategoriesComponent() {
         Category("Others"),
     )
     Column(
-        Modifier.padding(16.dp)
+        Modifier
+            .fillMaxWidth()
+            .padding(top = 24.dp)
     ) {
         LabelText(
             textId = R.string.categories,
@@ -63,7 +66,10 @@ fun CategoryChips(
     categories: List<Category>
 ) {
 
-    FlowRow {
+    FlowRow(
+        modifier = Modifier.fillMaxWidth(),
+        maxItemsInEachRow = 4
+    ) {
         categories.forEach { CategoryChip(category = it) }
     }
 }
@@ -108,7 +114,7 @@ fun CategoryChip(category: Category) {
     )
 }
 
-@Preview
+@Preview(widthDp = 500, heightDp = 500, backgroundColor = 0xFFFDE6D4)
 @Composable
 fun CategoriesComponentPreview() {
     CategoriesComponent()

@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.consumeWindowInsets
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
@@ -21,10 +20,10 @@ import com.dara.movemate.navigation.MovemateScreen.Calculate
 import com.dara.movemate.navigation.MovemateScreen.Home
 import com.dara.movemate.navigation.MovemateScreen.Profile
 import com.dara.movemate.navigation.MovemateScreen.Shipment
-import com.dara.movemate.ui.composables.calculate.CalculateScreen
-import com.dara.movemate.ui.composables.home.HomeScreen
 import com.dara.movemate.ui.composables.ProfileScreen
 import com.dara.movemate.ui.composables.ShipmentScreen
+import com.dara.movemate.ui.composables.calculate.CalculateScreen
+import com.dara.movemate.ui.composables.home.HomeScreen
 import com.dara.movemate.ui.theme.MovemateColors
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -58,7 +57,8 @@ fun MovemateApp() {
             composable(Home.name) { HomeScreen() }
             composable(Calculate.name) {
                 CalculateScreen(
-                    navigateBack = navController::navigateUp
+                    navigateBack = navController::navigateUp,
+                    onCalculateClicked = {}
                 )
             }
             composable(Shipment.name) { ShipmentScreen() }

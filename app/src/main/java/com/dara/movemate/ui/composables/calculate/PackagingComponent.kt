@@ -28,8 +28,9 @@ import com.dara.movemate.ui.composables.components.SecondaryText
 @Composable
 fun PackagingComponent() {
     Column(
-        Modifier
-            .padding(16.dp)) {
+        modifier = Modifier
+            .padding(top = 24.dp)
+    ) {
         LabelText(
             textId = R.string.packaging,
         )
