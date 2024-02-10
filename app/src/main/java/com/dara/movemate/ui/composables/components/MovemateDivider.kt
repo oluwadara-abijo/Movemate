@@ -1,4 +1,4 @@
-package com.dara.movemate.ui.composables
+package com.dara.movemate.ui.composables.components
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Divider

@@ -22,9 +22,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.dara.movemate.R
-import com.dara.movemate.ui.composables.LabelText
-import com.dara.movemate.ui.composables.SecondaryText
-import com.dara.movemate.ui.theme.MovemateColors
+import com.dara.movemate.ui.composables.components.LabelText
+import com.dara.movemate.ui.composables.components.SecondaryText
 
 @Composable
 fun PackagingComponent() {

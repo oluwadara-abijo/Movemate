@@ -27,8 +27,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dara.movemate.R
 import com.dara.movemate.data.Category
-import com.dara.movemate.ui.composables.LabelText
-import com.dara.movemate.ui.composables.SecondaryText
+import com.dara.movemate.ui.composables.components.LabelText
+import com.dara.movemate.ui.composables.components.SecondaryText
 import com.dara.movemate.ui.theme.navy_blue
 
 @Composable

@@ -1,4 +1,4 @@
-package com.dara.movemate.ui.composables
+package com.dara.movemate.ui.composables.components
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.PaddingValues

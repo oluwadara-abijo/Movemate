@@ -5,7 +5,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import com.dara.movemate.R
-import com.dara.movemate.ui.composables.LabelText
+import com.dara.movemate.ui.composables.components.LabelText
 import com.dara.movemate.ui.composables.Screen
 import com.dara.movemate.ui.theme.Dimens.DefaultPadding
 

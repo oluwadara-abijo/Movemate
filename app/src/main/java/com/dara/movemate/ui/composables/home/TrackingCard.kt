@@ -34,7 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dara.movemate.R
 import com.dara.movemate.data.Shipment
-import com.dara.movemate.ui.composables.MovemateDivider
+import com.dara.movemate.ui.composables.components.MovemateDivider
 import com.dara.movemate.ui.theme.Dimens.DefaultPadding
 import com.dara.movemate.ui.theme.Dimens.PaddingHalf
 import com.dara.movemate.ui.theme.Dimens.PaddingQuarter
