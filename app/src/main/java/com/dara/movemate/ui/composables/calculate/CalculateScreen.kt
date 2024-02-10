@@ -24,6 +24,7 @@ fun CalculateScreen(
                 )
             }
             item { DestinationCard() }
+            item { PackagingComponent() }
         }
 
     }
