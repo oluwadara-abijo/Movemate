@@ -3,7 +3,6 @@ package com.dara.movemate.ui.composables.calculate
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.dara.movemate.R
 import com.dara.movemate.ui.composables.LabelText
@@ -25,13 +24,7 @@ fun CalculateScreen(
             }
             item { DestinationCard() }
             item { PackagingComponent() }
+            item { CategoriesComponent() }
         }
-
     }
-}
-
-@Preview
-@Composable
-fun CalculateScreenPreview() {
-    CalculateScreen() {}
 }
