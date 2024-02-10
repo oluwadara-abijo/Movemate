@@ -20,7 +20,7 @@ import com.dara.movemate.navigation.MovemateScreen.Calculate
 import com.dara.movemate.navigation.MovemateScreen.Home
 import com.dara.movemate.navigation.MovemateScreen.Profile
 import com.dara.movemate.navigation.MovemateScreen.Shipment
-import com.dara.movemate.ui.composables.CalculateScreen
+import com.dara.movemate.ui.composables.calculate.CalculateScreen
 import com.dara.movemate.ui.composables.home.HomeScreen
 import com.dara.movemate.ui.composables.ProfileScreen
 import com.dara.movemate.ui.composables.ShipmentScreen
@@ -55,7 +55,11 @@ fun MovemateApp() {
             startDestination = Home.name
         ) {
             composable(Home.name) { HomeScreen() }
-            composable(Calculate.name) { CalculateScreen() }
+            composable(Calculate.name) {
+                CalculateScreen(
+                    navigateBack = navController::navigateUp
+                )
+            }
             composable(Shipment.name) { ShipmentScreen() }
             composable(Profile.name) { ProfileScreen() }
         }
