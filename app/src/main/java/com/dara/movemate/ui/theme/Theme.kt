@@ -13,11 +13,11 @@ fun MovemateTheme(
 
     SideEffect {
         systemUiController.run {
-            setSystemBarsColor(
-                color = MovemateColors.background,
+            setStatusBarColor(
+                color = MovemateColors.primary,
             )
             setNavigationBarColor(
-                color = MovemateColors.surface,
+                color = MovemateColors.background,
             )
         }
     }
