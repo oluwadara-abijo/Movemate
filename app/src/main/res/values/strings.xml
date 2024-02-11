@@ -20,4 +20,5 @@
     <string name="back_to_home">Back to home</string>
     <string name="estimate_description">This amount is estimated this will vary if you change your location or weight.</string>
     <string name="total_estimated_amount">Total Estimated Amount</string>
+    <string name="shipment_history">Shipment history</string>
 </resources>

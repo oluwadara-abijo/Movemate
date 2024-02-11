@@ -12,19 +12,17 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.dara.movemate.R
 import com.dara.movemate.navigation.MovemateScreen.Calculate
 import com.dara.movemate.navigation.MovemateScreen.Estimate
 import com.dara.movemate.navigation.MovemateScreen.Home
 import com.dara.movemate.navigation.MovemateScreen.Profile
 import com.dara.movemate.navigation.MovemateScreen.Shipment
 import com.dara.movemate.ui.composables.ProfileScreen
-import com.dara.movemate.ui.composables.ShipmentScreen
+import com.dara.movemate.ui.composables.shipment.ShipmentScreen
 import com.dara.movemate.ui.composables.calculate.CalculateScreen
 import com.dara.movemate.ui.composables.calculate.EstimateScreen
 import com.dara.movemate.ui.composables.home.HomeScreen
@@ -68,7 +66,11 @@ fun MovemateApp() {
                     onCalculateClicked = { navController.navigate(Estimate.name) }
                 )
             }
-            composable(Shipment.name) { ShipmentScreen() }
+            composable(Shipment.name) {
+                ShipmentScreen(
+                    navigateBack = navController::navigateUp
+                )
+            }
             composable(Profile.name) { ProfileScreen() }
             composable(Estimate.name) { EstimateScreen() }
         }

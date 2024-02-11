@@ -18,14 +18,15 @@ fun LabelText(
     @StringRes textId: Int,
     modifier: Modifier = Modifier,
     paddingValues: PaddingValues = PaddingValues(),
-    fontWeight: FontWeight = FontWeight.Bold
+    fontWeight: FontWeight = FontWeight.Bold,
+    textColor: Color = navy_blue
 ) {
     Text(
         modifier = modifier.padding(paddingValues),
         text = stringResource(textId),
         fontSize = 22.sp,
         fontWeight = fontWeight,
-        color = navy_blue
+        color = textColor
     )
 }
 
