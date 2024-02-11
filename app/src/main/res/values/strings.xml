@@ -21,4 +21,7 @@
     <string name="estimate_description">This amount is estimated this will vary if you change your location or weight.</string>
     <string name="total_estimated_amount">Total Estimated Amount</string>
     <string name="shipment_history">Shipment history</string>
+    <string name="arriving_today">Arriving today!</string>
+    <string name="delivery_info">Your delivery, #%1$s from %2$s, is arriving today!</string>
+    <string name="shipments">Shipments</string>
 </resources>
