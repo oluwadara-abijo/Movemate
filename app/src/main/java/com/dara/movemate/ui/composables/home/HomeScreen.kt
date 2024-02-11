@@ -9,7 +9,7 @@ import com.dara.movemate.R
 import com.dara.movemate.data.Shipment
 import com.dara.movemate.data.ShipmentStatus
 import com.dara.movemate.data.Vehicle
-import com.dara.movemate.ui.composables.LabelText
+import com.dara.movemate.ui.composables.components.LabelText
 import com.dara.movemate.ui.composables.Screen
 import com.dara.movemate.ui.theme.Dimens
 

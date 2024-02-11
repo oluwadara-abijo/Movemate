@@ -1,7 +1,6 @@
 package com.dara.movemate.navigation
 
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
@@ -19,34 +18,37 @@ import com.dara.movemate.navigation.MovemateScreen.Shipment
 import com.dara.movemate.ui.theme.MovemateColors
 
 @Composable
-fun MovemateAppBar(
+fun MovemateBottomBar(
     currentDestination: NavDestination?,
     onBottomTabSelected: (BottomTab) -> Unit,
+    isVisible: Boolean
 ) {
-    NavigationBar(
-        containerColor = MovemateColors.background
-    ) {
-        BOTTOM_TABS.forEach { tab ->
-            val isSelected = currentDestination?.route == tab.route
-            NavigationBarItem(
-                selected = isSelected,
-                onClick = { onBottomTabSelected(tab) },
-                icon = {
-                    Icon(
-                        painter = painterResource(id = tab.icon),
-                        contentDescription = null
+    if (isVisible) {
+        NavigationBar(
+            containerColor = MovemateColors.background
+        ) {
+            BOTTOM_TABS.forEach { tab ->
+                val isSelected = currentDestination?.route == tab.route
+                NavigationBarItem(
+                    selected = isSelected,
+                    onClick = { onBottomTabSelected(tab) },
+                    icon = {
+                        Icon(
+                            painter = painterResource(id = tab.icon),
+                            contentDescription = null
+                        )
+                    },
+                    label = { Text(text = stringResource(id = tab.labelId)) },
+                    colors = NavigationBarItemDefaults.colors(
+                        selectedIconColor = MovemateColors.primary,
+                        unselectedIconColor = Color.Gray,
+                        selectedTextColor = MovemateColors.primary,
+                        unselectedTextColor = Color.Gray,
+                        indicatorColor = MovemateColors.background
                     )
-                },
-                label = { Text(text = stringResource(id = tab.labelId)) },
-                colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = MovemateColors.primary,
-                    unselectedIconColor = Color.Gray,
-                    selectedTextColor = MovemateColors.primary,
-                    unselectedTextColor = Color.Gray,
-                    indicatorColor = MovemateColors.background
                 )
-            )
 
+            }
         }
     }
 }
@@ -55,7 +57,8 @@ enum class MovemateScreen {
     Home,
     Calculate,
     Shipment,
-    Profile
+    Profile,
+    Estimate,
 }
 
 data class BottomTab(

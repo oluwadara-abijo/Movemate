@@ -25,7 +25,7 @@ val md_theme_light_surface = Color(0xFFF8FDFF)
 val md_theme_light_onSurface = Color(0xFF001F25)
 val md_theme_light_surfaceVariant = Color(0xFFE6E0EC)
 val md_theme_light_onSurfaceVariant = Color(0xFF48454E)
-val md_theme_light_outline = Color(0xFF79757F)
+val md_theme_light_outline = Color(0xFF949EA1)
 val md_theme_light_inverseOnSurface = Color(0xFFD6F6FF)
 val md_theme_light_inverseSurface = Color(0xFF00363F)
 val md_theme_light_inversePrimary = Color(0xFFCEBDFF)
@@ -36,6 +36,8 @@ val sender_box_background = Color(0xFFFDE6D4)
 val receiver_box_background = Color(0xFFD6F1DE)
 val indicator_color = Color(0xFF48CB2D)
 val light_orange = Color(0xFFDA955A)
+val navy_blue = Color(0xFF242b39)
+val green_text = Color(0xFF42C88C)
 
 
 val MovemateColors = lightColorScheme(
