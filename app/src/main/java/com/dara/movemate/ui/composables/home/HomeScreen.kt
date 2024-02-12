@@ -29,12 +29,16 @@ import com.dara.movemate.ui.theme.Dimens
 fun HomeScreen(
 ) {
     var isSearching by remember { mutableStateOf(false) }
+    var allOrders by remember { mutableStateOf(orders) }
 
     Screen {
         Column {
             HomeScreenAppBar(
                 isSearching = isSearching,
-                onToggleSearch = { isSearching = !isSearching }
+                onToggleSearch = { isSearching = !isSearching },
+                onSearchOrder = { searchQuery ->
+                    allOrders = orders.filter { it.id.contains(searchQuery) }
+                }
             )
             if (isSearching) {
                 LazyColumn(
@@ -45,9 +49,9 @@ fun HomeScreen(
                             shape = RoundedCornerShape(16.dp)
                         )
                 ) {
-                    itemsIndexed(orders) { index, order ->
+                    itemsIndexed(allOrders) { index, order ->
                         OrderRow(order = order)
-                        if (index < orders.lastIndex) {
+                        if (index < allOrders.lastIndex) {
                             Divider(modifier = Modifier.padding(horizontal = 12.dp))
                         }
                     }

@@ -47,7 +47,8 @@ import com.dara.movemate.ui.theme.MovemateColors
 @Composable
 fun HomeScreenAppBar(
     isSearching: Boolean,
-    onToggleSearch: () -> Unit
+    onToggleSearch: () -> Unit,
+    onSearchOrder: (String) -> Unit,
 ) {
     val contentAnimation = spring(
         stiffness = Spring.StiffnessVeryLow,
@@ -145,7 +146,8 @@ fun HomeScreenAppBar(
             }
             SearchRow(
                 isSearching = isSearching,
-                toggleSearch = { onToggleSearch() }
+                toggleSearch = { onToggleSearch() },
+                findOrder = { orderId -> onSearchOrder(orderId) }
             )
         }
     }

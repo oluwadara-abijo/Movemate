@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
@@ -29,6 +31,8 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import com.dara.movemate.R
 import com.dara.movemate.ui.theme.MovemateColors
@@ -38,6 +42,7 @@ import com.dara.movemate.ui.theme.MovemateColors
 fun SearchRow(
     isSearching: Boolean,
     toggleSearch: () -> Unit,
+    findOrder: (String) -> Unit,
 ) {
     var searchQuery by remember { mutableStateOf("") }
 
@@ -64,6 +69,7 @@ fun SearchRow(
                     focusRequester.requestFocus()
                 } else {
                     clearFocus()
+                    searchQuery = ""
                 }
             },
         value = searchQuery,
@@ -95,5 +101,13 @@ fun SearchRow(
             focusedIndicatorColor = Transparent,
             unfocusedIndicatorColor = Transparent
         ),
+        keyboardOptions = KeyboardOptions(
+            capitalization = KeyboardCapitalization.Characters,
+            imeAction = ImeAction.Search,
+        ),
+        keyboardActions = KeyboardActions(
+            onSearch = { findOrder(searchQuery) }
+        ),
+        maxLines = 1
     )
 }
