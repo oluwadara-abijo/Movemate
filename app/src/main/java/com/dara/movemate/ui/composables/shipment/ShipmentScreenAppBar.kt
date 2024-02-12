@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material3.Icon
@@ -21,20 +23,23 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.dara.movemate.R
 import com.dara.movemate.data.ShipmentStatus
 import com.dara.movemate.ui.composables.components.LabelText
 import com.dara.movemate.ui.theme.MovemateColors
+import com.dara.movemate.ui.theme.badgeContainerColor
+import com.dara.movemate.ui.theme.badgeTextColor
 
 @Composable
 fun ShipmentScreenAppBar(
     navigateBack: () -> Unit,
-    filterShipments: (ShipmentStatus?) -> Unit
+    filterShipments: (ShipmentStatus?) -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -42,7 +47,7 @@ fun ShipmentScreenAppBar(
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
+            verticalAlignment = CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Icon(
@@ -51,34 +56,30 @@ fun ShipmentScreenAppBar(
                     .clickable { navigateBack() },
                 imageVector = Icons.Default.KeyboardArrowLeft,
                 contentDescription = null,
-                tint = Color.White
+                tint = White
             )
             LabelText(
-                textId = R.string.shipment_history, textColor = Color.White
+                textId = R.string.shipment_history, textColor = White
             )
             Spacer(Modifier.size(48.dp))
         }
-        ShipmentTabRow(filterShipments = filterShipments)
+        ShipmentTabRow(
+            filterShipments = filterShipments,
+        )
     }
 }
 
 @Composable
 fun ShipmentTabRow(
-    filterShipments: (ShipmentStatus?) -> Unit
+    filterShipments: (ShipmentStatus?) -> Unit,
 ) {
     var selectedTabIndex by remember { mutableIntStateOf(0) }
     val tabs = listOf("All", "Completed", "In progress", "Pending order", "Cancelled")
-    val currentFilter = when (selectedTabIndex) {
-        1 -> ShipmentStatus.Completed
-        2 -> ShipmentStatus.InProgress
-        3 -> ShipmentStatus.Pending
-        4 -> ShipmentStatus.Cancelled
-        else -> null
-    }
+
     ScrollableTabRow(
         selectedTabIndex = selectedTabIndex,
         containerColor = MovemateColors.primary,
-        contentColor = Color.White,
+        contentColor = White,
         edgePadding = 0.dp,
         indicator = { tabPositions ->
             TabRowDefaults.Indicator(
@@ -88,15 +89,66 @@ fun ShipmentTabRow(
         }
     ) {
         tabs.forEachIndexed { index, tab ->
+            val tabCount = when (index) {
+                0 -> 12
+                1 -> 5
+                2 -> 3
+                3 -> 4
+                4 -> 1
+                else -> 0
+            }
             Tab(
                 selected = selectedTabIndex == index,
                 onClick = {
                     selectedTabIndex = index
+                    val currentFilter = when (selectedTabIndex) {
+                        1 -> ShipmentStatus.Completed
+                        2 -> ShipmentStatus.InProgress
+                        3 -> ShipmentStatus.Pending
+                        4 -> ShipmentStatus.Cancelled
+                        else -> null
+                    }
                     filterShipments(currentFilter)
                 },
-                text = { Text(text = tab) }
+                text = {
+                    TabLabel(
+                        title = tab,
+                        count = tabCount,
+                        isSelected = selectedTabIndex == index
+                    )
+                }
             )
         }
+    }
+}
+
+@Composable
+fun TabLabel(
+    title: String,
+    count: Int,
+    isSelected: Boolean
+) {
+    Row(
+        verticalAlignment = CenterVertically,
+        modifier = Modifier.padding(bottom = 4.dp)
+    ) {
+        Text(
+            text = title,
+            modifier = Modifier.padding(end = 4.dp),
+            fontSize = 18.sp,
+            color = if (isSelected) White else badgeTextColor
+        )
+        Text(
+            modifier = Modifier
+                .background(
+                    color = if (isSelected) MovemateColors.secondary
+                    else badgeContainerColor,
+                    shape = RoundedCornerShape(24.dp)
+                )
+                .padding(vertical = 2.dp, horizontal = 12.dp),
+            text = count.toString(),
+            color = if (isSelected) White else badgeTextColor
+        )
     }
 }
 

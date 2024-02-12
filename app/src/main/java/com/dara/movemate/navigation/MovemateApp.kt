@@ -34,7 +34,7 @@ fun MovemateApp() {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
-    val topLevelRoutes = listOf(Home.name, Shipment.name)
+    val topLevelRoutes = listOf(Home.name, Profile.name)
     val shouldShowBottomBar = topLevelRoutes.contains(currentDestination?.route)
 
     Scaffold(
