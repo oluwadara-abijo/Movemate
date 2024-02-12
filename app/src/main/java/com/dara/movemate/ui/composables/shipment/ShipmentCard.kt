@@ -27,9 +27,9 @@ import com.dara.movemate.ui.theme.MovemateColors
 import com.dara.movemate.ui.theme.pale_grey
 
 @Composable
-fun ShipmentCard(shipment: Shipment) {
+fun ShipmentCard(shipment: Shipment, modifier: Modifier) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .padding(top = 12.dp, start = 16.dp, end = 16.dp)
             .background(
                 color = Color.White,
@@ -102,5 +102,5 @@ fun ShipmentCardPreview() {
         date = "Sep 20, 2023",
         timeline = "2 - 3 days"
     )
-    ShipmentCard(shipment = shipment)
+    ShipmentCard(shipment = shipment, Modifier)
 }
