@@ -17,30 +17,53 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Transparent
+import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.dara.movemate.R
-import com.dara.movemate.ui.theme.Dimens.DefaultPadding
 import com.dara.movemate.ui.theme.MovemateColors
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun SearchRow(
+    isSearching: Boolean,
     toggleSearch: () -> Unit
 ) {
     var searchQuery by remember { mutableStateOf("") }
 
+    val focusRequester = remember { FocusRequester() }
+    val focusManager = LocalFocusManager.current
+    val softKeyboard = LocalSoftwareKeyboardController.current
+    fun clearFocus() {
+        focusManager.clearFocus()
+        softKeyboard?.hide()
+    }
+
     TextField(
         modifier = Modifier
+            .padding(horizontal = 16.dp)
             .fillMaxWidth()
-            .padding(top = 24.dp, bottom = DefaultPadding)
+            .focusRequester(focusRequester)
             .onFocusChanged {
-                if (it.isFocused) {
+                if (it.isFocused && !isSearching) {
                     toggleSearch()
+                }
+            }
+            .onGloballyPositioned {
+                if (isSearching) {
+                    focusRequester.requestFocus()
+                } else {
+                    clearFocus()
                 }
             },
         value = searchQuery,
@@ -67,14 +90,10 @@ fun SearchRow(
         },
         shape = CircleShape,
         colors = TextFieldDefaults.colors(
-            focusedContainerColor = Color.White,
-            unfocusedContainerColor = Color.White
+            focusedContainerColor = White,
+            unfocusedContainerColor = White,
+            focusedIndicatorColor = Transparent,
+            unfocusedIndicatorColor = Transparent
         ),
     )
-}
-
-@Preview
-@Composable
-fun SearchRowPreview() {
-    SearchRow { }
 }

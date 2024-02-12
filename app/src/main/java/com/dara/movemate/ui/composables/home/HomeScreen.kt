@@ -2,38 +2,53 @@ package com.dara.movemate.ui.composables.home
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.unit.dp
 import com.dara.movemate.R
 import com.dara.movemate.data.Shipment
 import com.dara.movemate.data.ShipmentStatus
 import com.dara.movemate.data.Vehicle
-import com.dara.movemate.ui.composables.components.LabelText
 import com.dara.movemate.ui.composables.Screen
+import com.dara.movemate.ui.composables.components.LabelText
 import com.dara.movemate.ui.theme.Dimens
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+) {
+    var isSearching by remember { mutableStateOf(false) }
+
     Screen {
         LazyColumn {
-            item { HomeScreenAppBar() }
             item {
-                LabelText(
-                    textId = R.string.tracking,
-                    paddingValues = PaddingValues(top = 24.dp, start = Dimens.DefaultPadding)
+                HomeScreenAppBar(
+                    isSearching = isSearching,
+                    onToggleSearch = { isSearching = !isSearching }
                 )
             }
-            item { TrackingCard(currentShipment = currentShipment) }
-            item {
-                LabelText(
-                    textId = R.string.available_vehicles,
-                    paddingValues = PaddingValues(top = 24.dp, start = Dimens.DefaultPadding)
-                )
+            if (isSearching) {
+                item { Text(text = "Search content") }
+            } else {
+                item {
+                    LabelText(
+                        textId = R.string.tracking,
+                        paddingValues = PaddingValues(top = 24.dp, start = Dimens.DefaultPadding)
+                    )
+                }
+                item { TrackingCard(currentShipment = currentShipment) }
+                item {
+                    LabelText(
+                        textId = R.string.available_vehicles,
+                        paddingValues = PaddingValues(top = 24.dp, start = Dimens.DefaultPadding)
+                    )
+                }
+                item { VehiclesCarousel(vehicles = availableVehicles) }
             }
-            item { VehiclesCarousel(vehicles = availableVehicles) }
         }
-
     }
 }
 
@@ -53,9 +68,3 @@ val availableVehicles = listOf(
     Vehicle("Cargo freight", "Reliable", R.drawable.cargo_truck),
     Vehicle("Air freight", "International", R.drawable.airplane)
 )
-
-@Preview
-@Composable
-fun HomeScreenPreview() {
-    HomeScreen()
-}

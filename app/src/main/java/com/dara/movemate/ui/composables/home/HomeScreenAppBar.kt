@@ -1,7 +1,6 @@
 package com.dara.movemate.ui.composables.home
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
@@ -30,18 +29,12 @@ import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -51,11 +44,11 @@ import com.dara.movemate.ui.theme.Dimens.PaddingQuarter
 import com.dara.movemate.ui.theme.Dimens.ProfilePictureSize
 import com.dara.movemate.ui.theme.MovemateColors
 
-@OptIn(ExperimentalAnimationApi::class, ExperimentalComposeUiApi::class)
 @Composable
 fun HomeScreenAppBar(
+    isSearching: Boolean,
+    onToggleSearch: () -> Unit
 ) {
-    var isSearching by remember { mutableStateOf(false) }
     val contentAnimation = spring(
         stiffness = Spring.StiffnessVeryLow,
         visibilityThreshold = IntOffset.Zero,
@@ -66,7 +59,6 @@ fun HomeScreenAppBar(
             .background(MovemateColors.primary)
             .animateContentSize()
             .fillMaxWidth()
-            .padding(DefaultPadding)
     ) {
         AnimatedVisibility(
             visible = !isSearching,
@@ -74,7 +66,10 @@ fun HomeScreenAppBar(
             exit = slideOutVertically(contentAnimation) + fadeOut() + shrinkVertically(),
         ) {
             Row(
-                modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = DefaultPadding, start = DefaultPadding, end = DefaultPadding),
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.profile_picture),
@@ -129,8 +124,10 @@ fun HomeScreenAppBar(
             }
         }
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 24.dp),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             AnimatedVisibility(
                 visible = isSearching,
@@ -140,24 +137,16 @@ fun HomeScreenAppBar(
                 Icon(
                     modifier = Modifier
                         .size(48.dp)
-                        .clickable {
-                            isSearching = !isSearching
-                        },
+                        .clickable { onToggleSearch() },
                     imageVector = Icons.Default.KeyboardArrowLeft,
                     contentDescription = null,
                     tint = White
                 )
             }
             SearchRow(
-                toggleSearch = {
-                    isSearching = true
-                })
+                isSearching = isSearching,
+                toggleSearch = { onToggleSearch() }
+            )
         }
     }
-}
-
-@Preview
-@Composable
-fun HomeScreenAppBarPreview() {
-    HomeScreenAppBar()
 }
