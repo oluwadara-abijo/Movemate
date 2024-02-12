@@ -78,7 +78,7 @@ fun EstimateScreen() {
                     color = green_text
                 )
                 SecondaryText(
-                    textId = R.string.estimate_description,
+                    text = stringResource(id = R.string.estimate_description),
                     paddingValues = PaddingValues(top = 8.dp),
                     alignment = TextAlign.Center
                 )

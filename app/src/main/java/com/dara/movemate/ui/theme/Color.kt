@@ -38,6 +38,10 @@ val indicator_color = Color(0xFF48CB2D)
 val light_orange = Color(0xFFDA955A)
 val navy_blue = Color(0xFF242b39)
 val green_text = Color(0xFF42C88C)
+val blue_text = Color(0xFF0B60B0)
+val pale_grey = Color(0xFFD8D9DA)
+val badgeContainerColor = Color(0xFF7358c4)
+val badgeTextColor = Color(0xFFBCA8F6)
 
 
 val MovemateColors = lightColorScheme(
