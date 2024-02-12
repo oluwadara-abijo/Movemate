@@ -37,7 +37,7 @@ import com.dara.movemate.ui.theme.MovemateColors
 @Composable
 fun SearchRow(
     isSearching: Boolean,
-    toggleSearch: () -> Unit
+    toggleSearch: () -> Unit,
 ) {
     var searchQuery by remember { mutableStateOf("") }
 

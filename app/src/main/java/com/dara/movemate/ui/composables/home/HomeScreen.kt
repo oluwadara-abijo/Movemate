@@ -1,15 +1,23 @@
 package com.dara.movemate.ui.composables.home
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Text
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.dara.movemate.R
+import com.dara.movemate.data.Order
 import com.dara.movemate.data.Shipment
 import com.dara.movemate.data.ShipmentStatus
 import com.dara.movemate.data.Vehicle
@@ -23,30 +31,50 @@ fun HomeScreen(
     var isSearching by remember { mutableStateOf(false) }
 
     Screen {
-        LazyColumn {
-            item {
-                HomeScreenAppBar(
-                    isSearching = isSearching,
-                    onToggleSearch = { isSearching = !isSearching }
-                )
-            }
+        Column {
+            HomeScreenAppBar(
+                isSearching = isSearching,
+                onToggleSearch = { isSearching = !isSearching }
+            )
             if (isSearching) {
-                item { Text(text = "Search content") }
+                LazyColumn(
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .background(
+                            color = Color.White,
+                            shape = RoundedCornerShape(16.dp)
+                        )
+                ) {
+                    itemsIndexed(orders) { index, order ->
+                        OrderRow(order = order)
+                        if (index < orders.lastIndex) {
+                            Divider(modifier = Modifier.padding(horizontal = 12.dp))
+                        }
+                    }
+                }
             } else {
-                item {
-                    LabelText(
-                        textId = R.string.tracking,
-                        paddingValues = PaddingValues(top = 24.dp, start = Dimens.DefaultPadding)
-                    )
+                LazyColumn {
+                    item {
+                        LabelText(
+                            textId = R.string.tracking,
+                            paddingValues = PaddingValues(
+                                top = 24.dp,
+                                start = Dimens.DefaultPadding
+                            )
+                        )
+                    }
+                    item { TrackingCard(currentShipment = currentShipment) }
+                    item {
+                        LabelText(
+                            textId = R.string.available_vehicles,
+                            paddingValues = PaddingValues(
+                                top = 24.dp,
+                                start = Dimens.DefaultPadding
+                            )
+                        )
+                    }
+                    item { VehiclesCarousel(vehicles = availableVehicles) }
                 }
-                item { TrackingCard(currentShipment = currentShipment) }
-                item {
-                    LabelText(
-                        textId = R.string.available_vehicles,
-                        paddingValues = PaddingValues(top = 24.dp, start = Dimens.DefaultPadding)
-                    )
-                }
-                item { VehiclesCarousel(vehicles = availableVehicles) }
             }
         }
     }
@@ -67,4 +95,37 @@ val availableVehicles = listOf(
     Vehicle("Ocean freight", "International", R.drawable.ship),
     Vehicle("Cargo freight", "Reliable", R.drawable.cargo_truck),
     Vehicle("Air freight", "International", R.drawable.airplane)
+)
+
+val orders = listOf(
+    Order(
+        id = "#NE43857340857904",
+        name = "Macbook pro M2",
+        sender = "Paris",
+        receiver = "Morocco"
+    ),
+    Order(
+        id = "#NEJ20089934122231",
+        name = "Summer linen jacket",
+        sender = "Barcelona",
+        receiver = "Paris"
+    ),
+    Order(
+        id = "#NEJ35870264978659",
+        name = "Tapered-fit jeans AW",
+        sender = "Columbia",
+        receiver = "Paris"
+    ),
+    Order(
+        id = "#NEJ35870264978659",
+        name = "Slim fit jeans AW",
+        sender = "Bogota",
+        receiver = "Dhaka"
+    ),
+    Order(
+        id = "#NEJ23481570754963",
+        name = "Office setup desk",
+        sender = "France",
+        receiver = "Germany"
+    )
 )

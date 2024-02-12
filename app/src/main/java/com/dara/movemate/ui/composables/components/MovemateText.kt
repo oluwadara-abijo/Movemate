@@ -10,6 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import com.dara.movemate.ui.theme.navy_blue
 
@@ -32,16 +33,19 @@ fun LabelText(
 
 @Composable
 fun SecondaryText(
-    @StringRes textId: Int,
+    text: String,
     modifier: Modifier = Modifier,
     paddingValues: PaddingValues = PaddingValues(),
-    alignment: TextAlign? = null
+    alignment: TextAlign? = null,
+    fontSize: TextUnit = 16.sp,
+    fontWeight: FontWeight = FontWeight.Normal
 ) {
     Text(
         modifier = modifier.padding(paddingValues),
-        text = stringResource(textId),
+        text = text,
         color = Color.Gray,
-        fontSize = 16.sp,
-        textAlign = alignment
+        fontSize = fontSize,
+        textAlign = alignment,
+        fontWeight = fontWeight
     )
 }
