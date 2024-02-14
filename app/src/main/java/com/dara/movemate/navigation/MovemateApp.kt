@@ -1,5 +1,11 @@
 package com.dara.movemate.navigation
 
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.WindowInsets
@@ -22,10 +28,10 @@ import com.dara.movemate.navigation.MovemateScreen.Home
 import com.dara.movemate.navigation.MovemateScreen.Profile
 import com.dara.movemate.navigation.MovemateScreen.Shipment
 import com.dara.movemate.ui.composables.ProfileScreen
-import com.dara.movemate.ui.composables.shipment.ShipmentScreen
 import com.dara.movemate.ui.composables.calculate.CalculateScreen
 import com.dara.movemate.ui.composables.calculate.EstimateScreen
 import com.dara.movemate.ui.composables.home.HomeScreen
+import com.dara.movemate.ui.composables.shipment.ShipmentScreen
 import com.dara.movemate.ui.theme.MovemateColors
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -59,7 +65,15 @@ fun MovemateApp() {
             navController = navController,
             startDestination = Home.name
         ) {
-            composable(Home.name) { HomeScreen() }
+            composable(
+                route = Home.name,
+                enterTransition = {
+                    slideInVertically(
+                        animationSpec = spring(stiffness = Spring.StiffnessVeryLow),
+                        initialOffsetY = { fullHeight -> -fullHeight }) + fadeIn()
+                },
+                exitTransition = { fadeOut(animationSpec = tween(1000)) }
+            ) { HomeScreen() }
             composable(Calculate.name) {
                 CalculateScreen(
                     navigateBack = navController::navigateUp,
