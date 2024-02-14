@@ -5,12 +5,9 @@ import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.expandHorizontally
-import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkVertically
 import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -35,6 +32,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -50,21 +48,18 @@ fun HomeScreenAppBar(
     onToggleSearch: () -> Unit,
     onSearchOrder: (String) -> Unit,
 ) {
-    val contentAnimation = spring(
-        stiffness = Spring.StiffnessVeryLow,
-        visibilityThreshold = IntOffset.Zero,
-    )
-
     Column(
         modifier = Modifier
             .background(MovemateColors.primary)
-            .animateContentSize()
+            .animateContentSize(
+                animationSpec = spring(stiffness = Spring.StiffnessLow)
+            )
             .fillMaxWidth()
     ) {
         AnimatedVisibility(
             visible = !isSearching,
-            enter = slideInVertically(contentAnimation) + fadeIn() + expandVertically(),
-            exit = slideOutVertically(contentAnimation) + fadeOut() + shrinkVertically(),
+            enter = slideInVertically() + fadeIn(),
+            exit = slideOutVertically() + fadeOut(),
         ) {
             Row(
                 modifier = Modifier
@@ -132,8 +127,8 @@ fun HomeScreenAppBar(
         ) {
             AnimatedVisibility(
                 visible = isSearching,
-                enter = expandHorizontally(),
-                exit = slideOutHorizontally(contentAnimation)
+                enter = expandHorizontally() + fadeIn(),
+                exit = fadeOut()
             ) {
                 Icon(
                     modifier = Modifier
