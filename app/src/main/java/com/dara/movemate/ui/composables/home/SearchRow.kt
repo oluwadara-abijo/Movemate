@@ -61,7 +61,7 @@ fun SearchRow(
         modifier = Modifier
             .padding(horizontal = 16.dp)
             .animateContentSize(
-                animationSpec = spring(stiffness = Spring.StiffnessLow)
+                animationSpec = spring(stiffness = Spring.StiffnessVeryLow)
             )
             .fillMaxWidth()
             .focusRequester(focusRequester)
