@@ -1,11 +1,7 @@
 package com.dara.movemate.navigation
 
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.WindowInsets
@@ -67,11 +63,6 @@ fun MovemateApp() {
         ) {
             composable(
                 route = Home.name,
-                enterTransition = {
-                    slideInVertically(
-                        animationSpec = spring(stiffness = Spring.StiffnessVeryLow),
-                        initialOffsetY = { fullHeight -> -fullHeight }) + fadeIn()
-                },
                 exitTransition = { fadeOut(animationSpec = tween(1000)) }
             ) { HomeScreen() }
             composable(Calculate.name) {

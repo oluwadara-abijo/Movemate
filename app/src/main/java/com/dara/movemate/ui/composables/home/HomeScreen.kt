@@ -59,24 +59,9 @@ fun HomeScreen(
             } else {
                 LazyColumn {
                     item {
-                        LabelText(
-                            textId = R.string.tracking,
-                            paddingValues = PaddingValues(
-                                top = 24.dp,
-                                start = Dimens.DefaultPadding
-                            )
-                        )
+
                     }
                     item { TrackingCard(currentShipment = currentShipment) }
-                    item {
-                        LabelText(
-                            textId = R.string.available_vehicles,
-                            paddingValues = PaddingValues(
-                                top = 24.dp,
-                                start = Dimens.DefaultPadding
-                            )
-                        )
-                    }
                     item { VehiclesCarousel(vehicles = availableVehicles) }
                 }
             }

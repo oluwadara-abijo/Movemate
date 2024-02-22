@@ -2,7 +2,6 @@ package com.dara.movemate.ui.composables.home
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -15,7 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -37,9 +36,10 @@ import com.dara.movemate.ui.theme.Dimens.DefaultPadding
 fun VehicleCard(vehicle: Vehicle) {
     var animateComponents by remember { mutableStateOf(false) }
 
-    SideEffect {
+    LaunchedEffect(Unit) {
         animateComponents = true
     }
+
     Column(
         modifier = Modifier
             .size(height = 230.dp, width = 210.dp)
@@ -63,9 +63,9 @@ fun VehicleCard(vehicle: Vehicle) {
         AnimatedVisibility(
             visible = animateComponents,
             enter = slideInHorizontally(
-                initialOffsetX = { 300 },
+                initialOffsetX = { fullWidth -> fullWidth * 3 },
                 animationSpec = tween(durationMillis = 1000)
-            ) + fadeIn()
+            )
         ) {
             Image(
                 painter = painterResource(vehicle.icon),
