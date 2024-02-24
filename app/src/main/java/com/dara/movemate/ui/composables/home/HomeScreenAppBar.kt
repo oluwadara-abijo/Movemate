@@ -2,17 +2,13 @@ package com.dara.movemate.ui.composables.home
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -22,7 +18,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -41,6 +36,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dara.movemate.R
+import com.dara.movemate.ui.composables.components.BackButton
 import com.dara.movemate.ui.theme.Dimens.DefaultPadding
 import com.dara.movemate.ui.theme.Dimens.PaddingQuarter
 import com.dara.movemate.ui.theme.Dimens.ProfilePictureSize
@@ -68,7 +64,7 @@ fun HomeScreenAppBar(
             modifier = Modifier
                 .background(MovemateColors.primary)
                 .animateContentSize(
-                    animationSpec = spring(stiffness = Spring.StiffnessLow)
+                    animationSpec = tween(1000)
                 )
                 .fillMaxWidth()
         ) {
@@ -145,20 +141,7 @@ fun HomeScreenAppBar(
                     .padding(vertical = 24.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                AnimatedVisibility(
-                    visible = isSearching,
-                    enter = expandHorizontally() + fadeIn(),
-                    exit = fadeOut()
-                ) {
-                    Icon(
-                        modifier = Modifier
-                            .size(48.dp)
-                            .clickable { onToggleSearch() },
-                        imageVector = Icons.Default.KeyboardArrowLeft,
-                        contentDescription = null,
-                        tint = White
-                    )
-                }
+                BackButton(isSearching, onToggleSearch)
                 SearchRow(
                     isSearching = isSearching,
                     toggleSearch = { onToggleSearch() },

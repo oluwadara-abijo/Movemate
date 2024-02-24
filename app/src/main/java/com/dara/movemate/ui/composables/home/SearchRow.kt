@@ -3,6 +3,7 @@ package com.dara.movemate.ui.composables.home
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -61,7 +62,7 @@ fun SearchRow(
         modifier = Modifier
             .padding(horizontal = 16.dp)
             .animateContentSize(
-                animationSpec = spring(stiffness = Spring.StiffnessVeryLow)
+                animationSpec = tween(2000)
             )
             .fillMaxWidth()
             .focusRequester(focusRequester)
