@@ -77,7 +77,11 @@ fun MovemateApp() {
                 )
             }
             composable(Profile.name) { ProfileScreen() }
-            composable(Estimate.name) { EstimateScreen() }
+            composable(Estimate.name) {
+                EstimateScreen(
+                    goBackHome = { navController.navigate(Home.name) }
+                )
+            }
         }
 
     }
