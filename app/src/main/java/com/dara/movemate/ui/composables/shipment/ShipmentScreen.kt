@@ -1,20 +1,18 @@
 package com.dara.movemate.ui.composables.shipment
 
-import androidx.compose.animation.core.FastOutLinearInEasing
-import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.dara.movemate.R
 import com.dara.movemate.data.Shipment
@@ -26,12 +24,17 @@ import com.dara.movemate.data.ShipmentStatus.Pending
 import com.dara.movemate.ui.composables.Screen
 import com.dara.movemate.ui.composables.components.LabelText
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ShipmentScreen(
     navigateBack: () -> Unit,
 ) {
     var allShipments by remember { mutableStateOf(shipments) }
+
+    var animateComponents by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        animateComponents = true
+    }
 
     Screen {
         Column {
@@ -45,21 +48,22 @@ fun ShipmentScreen(
                     }
                 },
             )
-            LazyColumn(
-            ) {
+            LazyColumn {
                 item {
-                    LabelText(
-                        textId = R.string.shipments,
-                        paddingValues = PaddingValues(top = 16.dp, start = 24.dp)
-                    )
+                    AnimatedVisibility(
+                        visible = animateComponents,
+                        enter = slideInVertically(
+                            animationSpec = tween(1000),
+                            initialOffsetY = { fullHeight -> fullHeight * 2 })
+                    ) {
+                        LabelText(
+                            textId = R.string.shipments,
+                            paddingValues = PaddingValues(top = 16.dp, start = 24.dp)
+                        )
+                    }
                 }
-                items(allShipments, key = { it.id }) { shipment ->
-                    ShipmentCard(
-                        shipment = shipment,
-                        modifier = Modifier.animateItemPlacement(
-                            tween(delayMillis = 500, easing = FastOutSlowInEasing)
-                          )
-                    )
+                items(allShipments) { shipment ->
+                    ShipmentCard(shipment = shipment)
                 }
             }
         }
