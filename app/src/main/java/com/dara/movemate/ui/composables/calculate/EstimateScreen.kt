@@ -37,6 +37,8 @@ import com.dara.movemate.R
 import com.dara.movemate.ui.composables.Screen
 import com.dara.movemate.ui.composables.components.ActionButton
 import com.dara.movemate.ui.composables.components.SecondaryText
+import com.dara.movemate.ui.theme.Dimens
+import com.dara.movemate.ui.theme.Dimens.tweenAnimationDuration
 import com.dara.movemate.ui.theme.MovemateColors
 import com.dara.movemate.ui.theme.green_text
 
@@ -49,7 +51,7 @@ fun EstimateScreen(
     val priceCounter by animateIntAsState(
         targetValue = price,
         animationSpec = tween(
-            durationMillis = 2000,
+            durationMillis = tweenAnimationDuration,
             easing = LinearEasing
         ),
         label = "price"
@@ -94,7 +96,7 @@ fun EstimateScreen(
             AnimatedVisibility(
                 visible = animateComponents,
                 enter = scaleIn(
-                    animationSpec = tween(2000)
+                    animationSpec = tween(tweenAnimationDuration)
                 ) + fadeIn()
             ) {
                 Icon(
@@ -147,9 +149,9 @@ fun AnimatedContent(
     AnimatedVisibility(
         visible = shouldAnimate,
         enter = slideInVertically(
-            animationSpec = tween(2000),
+            animationSpec = tween(tweenAnimationDuration),
             initialOffsetY = { fullHeight -> fullHeight * 2 })
-                + fadeIn(animationSpec = tween(2000)),
+                + fadeIn(animationSpec = tween(tweenAnimationDuration)),
     ) {
         content()
     }

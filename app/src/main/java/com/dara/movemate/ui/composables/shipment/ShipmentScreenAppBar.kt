@@ -40,6 +40,7 @@ import com.dara.movemate.R
 import com.dara.movemate.data.ShipmentStatus
 import com.dara.movemate.ui.composables.components.BackButton
 import com.dara.movemate.ui.composables.components.LabelText
+import com.dara.movemate.ui.theme.Dimens.tweenAnimationDuration
 import com.dara.movemate.ui.theme.MovemateColors
 import com.dara.movemate.ui.theme.badgeContainerColor
 import com.dara.movemate.ui.theme.badgeTextColor
@@ -53,7 +54,7 @@ fun ShipmentScreenAppBar(
 
     val appBarHeight by animateDpAsState(
         targetValue = if (animateComponents) 113.dp else 180.dp,
-        animationSpec = tween(durationMillis = 1000),
+        animationSpec = tween(durationMillis = tweenAnimationDuration),
         label = "offset"
     )
 
@@ -77,7 +78,7 @@ fun ShipmentScreenAppBar(
             AnimatedVisibility(
                 visible = animateComponents,
                 enter = slideInVertically(
-                    animationSpec = tween(1000),
+                    animationSpec = tween(tweenAnimationDuration),
                     initialOffsetY = { fullHeight -> fullHeight * 2 })
             ) {
                 LabelText(
@@ -105,7 +106,7 @@ fun ShipmentTabRow(
     AnimatedVisibility(
         visible = animateComponents,
         enter = slideInHorizontally(
-            animationSpec = tween(1000),
+            animationSpec = tween(tweenAnimationDuration),
             initialOffsetX = { fullWidth -> fullWidth * 2 })
     ) {
         ScrollableTabRow(
@@ -118,7 +119,7 @@ fun ShipmentTabRow(
                 AnimatedVisibility(
                     visible = true,
                     enter = slideInVertically(
-                        animationSpec = tween(1000),
+                        animationSpec = tween(tweenAnimationDuration),
                         initialOffsetY = { fullHeight -> fullHeight * 2 })
                 ) {
                     TabRowDefaults.Indicator(

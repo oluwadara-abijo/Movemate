@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.sp
 import com.dara.movemate.R
 import com.dara.movemate.data.Vehicle
 import com.dara.movemate.ui.theme.Dimens.DefaultPadding
+import com.dara.movemate.ui.theme.Dimens.tweenAnimationDuration
 
 @Composable
 fun VehicleCard(vehicle: Vehicle) {
@@ -64,7 +65,7 @@ fun VehicleCard(vehicle: Vehicle) {
             visible = animateComponents,
             enter = slideInHorizontally(
                 initialOffsetX = { fullWidth -> fullWidth * 3 },
-                animationSpec = tween(durationMillis = 1000)
+                animationSpec = tween(durationMillis = tweenAnimationDuration)
             )
         ) {
             Image(

@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import com.dara.movemate.R
 import com.dara.movemate.ui.composables.components.BackButton
 import com.dara.movemate.ui.composables.components.LabelText
+import com.dara.movemate.ui.theme.Dimens.tweenAnimationDuration
 import com.dara.movemate.ui.theme.MovemateColors
 
 @Composable
@@ -34,7 +35,7 @@ fun CalculateScreenAppBar(
 
     val height by animateDpAsState(
         targetValue = if (animateComponents) 60.dp else 180.dp,
-        animationSpec = tween(durationMillis = 1000),
+        animationSpec = tween(durationMillis = tweenAnimationDuration),
         label = "offset"
     )
 

@@ -28,6 +28,8 @@ import com.dara.movemate.ui.composables.calculate.CalculateScreen
 import com.dara.movemate.ui.composables.calculate.EstimateScreen
 import com.dara.movemate.ui.composables.home.HomeScreen
 import com.dara.movemate.ui.composables.shipment.ShipmentScreen
+import com.dara.movemate.ui.theme.Dimens
+import com.dara.movemate.ui.theme.Dimens.tweenAnimationDuration
 import com.dara.movemate.ui.theme.MovemateColors
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -63,7 +65,7 @@ fun MovemateApp() {
         ) {
             composable(
                 route = Home.name,
-                exitTransition = { fadeOut(animationSpec = tween(1000)) }
+                exitTransition = { fadeOut(animationSpec = tween(tweenAnimationDuration)) }
             ) { HomeScreen() }
             composable(Calculate.name) {
                 CalculateScreen(

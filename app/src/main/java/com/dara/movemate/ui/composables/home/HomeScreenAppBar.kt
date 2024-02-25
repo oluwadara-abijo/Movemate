@@ -37,9 +37,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dara.movemate.R
 import com.dara.movemate.ui.composables.components.BackButton
+import com.dara.movemate.ui.theme.Dimens
 import com.dara.movemate.ui.theme.Dimens.DefaultPadding
 import com.dara.movemate.ui.theme.Dimens.PaddingQuarter
 import com.dara.movemate.ui.theme.Dimens.ProfilePictureSize
+import com.dara.movemate.ui.theme.Dimens.tweenAnimationDuration
 import com.dara.movemate.ui.theme.MovemateColors
 
 @Composable
@@ -57,14 +59,14 @@ fun HomeScreenAppBar(
     AnimatedVisibility(
         visible = animateComponents,
         enter = slideInVertically(
-            animationSpec = tween(1000),
+            animationSpec = tween(tweenAnimationDuration),
             initialOffsetY = { fullHeight -> -fullHeight }),
     ) {
         Column(
             modifier = Modifier
                 .background(MovemateColors.primary)
                 .animateContentSize(
-                    animationSpec = tween(1000)
+                    animationSpec = tween(tweenAnimationDuration)
                 )
                 .fillMaxWidth()
         ) {

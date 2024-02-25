@@ -37,6 +37,8 @@ import com.dara.movemate.R
 import com.dara.movemate.data.Category
 import com.dara.movemate.ui.composables.components.LabelText
 import com.dara.movemate.ui.composables.components.SecondaryText
+import com.dara.movemate.ui.theme.Dimens
+import com.dara.movemate.ui.theme.Dimens.tweenAnimationDuration
 import com.dara.movemate.ui.theme.navy_blue
 
 @Composable
@@ -59,9 +61,9 @@ fun CategoriesComponent() {
     AnimatedVisibility(
         visible = animateComponents,
         enter = slideInVertically(
-            animationSpec = tween(1500),
+            animationSpec = tween(tweenAnimationDuration),
             initialOffsetY = { fullHeight -> fullHeight * 2 })
-                + fadeIn(animationSpec = tween(3000)),
+                + fadeIn(animationSpec = tween(tweenAnimationDuration)),
     ) {
         Column(
             Modifier
@@ -100,9 +102,9 @@ fun CategoryChips(
             AnimatedVisibility(
                 visible = animateComponents,
                 enter = slideInHorizontally(
-                    animationSpec = tween(1500),
+                    animationSpec = tween(tweenAnimationDuration),
                     initialOffsetX = { fullWidth -> fullWidth * 4 })
-                        + fadeIn(animationSpec = tween(3000)),
+                        + fadeIn(animationSpec = tween(tweenAnimationDuration)),
             ) { CategoryChip(category = it) }
         }
     }

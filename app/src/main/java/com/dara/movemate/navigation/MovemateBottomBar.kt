@@ -41,6 +41,7 @@ import com.dara.movemate.navigation.MovemateScreen.Calculate
 import com.dara.movemate.navigation.MovemateScreen.Home
 import com.dara.movemate.navigation.MovemateScreen.Profile
 import com.dara.movemate.navigation.MovemateScreen.Shipment
+import com.dara.movemate.ui.theme.Dimens.tweenAnimationDuration
 import com.dara.movemate.ui.theme.MovemateColors
 
 @Composable
@@ -61,10 +62,10 @@ fun MovemateBottomBar(
     AnimatedVisibility(
         visible = isVisible,
         enter = slideInVertically(
-            animationSpec = tween(1000),
+            animationSpec = tween(tweenAnimationDuration),
             initialOffsetY = { fullHeight -> fullHeight * 2 }),
         exit = slideOutVertically(
-            animationSpec = tween(2000),
+            animationSpec = tween(tweenAnimationDuration),
             targetOffsetY = { fullHeight -> fullHeight * 2 })
     ) {
 
@@ -138,7 +139,7 @@ fun Indicator(width: Dp, startingPoint: Int) {
 
     val offset by animateIntOffsetAsState(
         targetValue = IntOffset(x = newPosition, y = 0),
-        animationSpec = tween(durationMillis = 500, easing = FastOutSlowInEasing),
+        animationSpec = tween(durationMillis = tweenAnimationDuration, easing = FastOutSlowInEasing),
         label = "offset"
     )
 

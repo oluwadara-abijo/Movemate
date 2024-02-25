@@ -23,6 +23,7 @@ import com.dara.movemate.data.ShipmentStatus.Loading
 import com.dara.movemate.data.ShipmentStatus.Pending
 import com.dara.movemate.ui.composables.Screen
 import com.dara.movemate.ui.composables.components.LabelText
+import com.dara.movemate.ui.theme.Dimens.tweenAnimationDuration
 
 @Composable
 fun ShipmentScreen(
@@ -53,7 +54,7 @@ fun ShipmentScreen(
                     AnimatedVisibility(
                         visible = animateComponents,
                         enter = slideInVertically(
-                            animationSpec = tween(1000),
+                            animationSpec = tween(tweenAnimationDuration),
                             initialOffsetY = { fullHeight -> fullHeight * 2 })
                     ) {
                         LabelText(

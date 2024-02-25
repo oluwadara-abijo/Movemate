@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.sp
 import com.dara.movemate.R
 import com.dara.movemate.data.Shipment
 import com.dara.movemate.data.ShipmentStatus
+import com.dara.movemate.ui.theme.Dimens.tweenAnimationDuration
 import com.dara.movemate.ui.theme.MovemateColors
 import com.dara.movemate.ui.theme.pale_grey
 
@@ -45,7 +46,7 @@ fun ShipmentCard(shipment: Shipment) {
     AnimatedVisibility(
         visible = animateComponents,
         enter = slideInVertically(
-            animationSpec = tween(1000),
+            animationSpec = tween(tweenAnimationDuration),
             initialOffsetY = { fullHeight -> fullHeight * 2 })
     ) {
         Row(

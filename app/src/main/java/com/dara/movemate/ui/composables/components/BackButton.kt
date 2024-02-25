@@ -16,6 +16,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.dara.movemate.ui.theme.Dimens
+import com.dara.movemate.ui.theme.Dimens.tweenAnimationDuration
 
 @Composable
 fun BackButton(
@@ -24,7 +26,7 @@ fun BackButton(
 ) {
     AnimatedVisibility(
         visible = animateComponents,
-        enter = expandHorizontally() + fadeIn(animationSpec = tween(1000)),
+        enter = expandHorizontally() + fadeIn(animationSpec = tween(tweenAnimationDuration)),
         exit = fadeOut()
     ) {
         Icon(

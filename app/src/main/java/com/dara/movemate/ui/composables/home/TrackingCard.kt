@@ -50,6 +50,7 @@ import com.dara.movemate.ui.theme.Dimens.DefaultPadding
 import com.dara.movemate.ui.theme.Dimens.PaddingHalf
 import com.dara.movemate.ui.theme.Dimens.PaddingQuarter
 import com.dara.movemate.ui.theme.Dimens.ProfilePictureSize
+import com.dara.movemate.ui.theme.Dimens.tweenAnimationDuration
 import com.dara.movemate.ui.theme.indicator_color
 import com.dara.movemate.ui.theme.light_orange
 import com.dara.movemate.ui.theme.receiver_box_background
@@ -69,9 +70,9 @@ fun TrackingCard(
     AnimatedVisibility(
         visible = animateComponents,
         enter = slideInVertically(
-            animationSpec = tween(1000),
+            animationSpec = tween(tweenAnimationDuration),
             initialOffsetY = { fullHeight -> fullHeight * 2 })
-                + fadeIn(animationSpec = tween(3000)),
+                + fadeIn(animationSpec = tween(tweenAnimationDuration)),
     ) {
         Column {
             LabelText(

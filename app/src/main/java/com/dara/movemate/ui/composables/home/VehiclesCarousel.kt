@@ -21,7 +21,9 @@ import androidx.compose.ui.unit.dp
 import com.dara.movemate.R
 import com.dara.movemate.data.Vehicle
 import com.dara.movemate.ui.composables.components.LabelText
+import com.dara.movemate.ui.theme.Dimens
 import com.dara.movemate.ui.theme.Dimens.DefaultPadding
+import com.dara.movemate.ui.theme.Dimens.tweenAnimationDuration
 
 @Composable
 fun VehiclesCarousel(vehicles: List<Vehicle>) {
@@ -34,8 +36,10 @@ fun VehiclesCarousel(vehicles: List<Vehicle>) {
     AnimatedVisibility(
         visible = animateComponents,
         enter = slideInVertically(
-            animationSpec = tween(1500),
-            initialOffsetY = { fullHeight -> fullHeight * 2 }) + fadeIn(animationSpec = tween(3000)),
+            animationSpec = tween(tweenAnimationDuration),
+            initialOffsetY = { fullHeight -> fullHeight * 2 }) + fadeIn(animationSpec = tween(
+            tweenAnimationDuration
+        )),
     ) {
         Column {
             LabelText(

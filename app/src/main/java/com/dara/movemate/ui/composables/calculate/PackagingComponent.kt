@@ -34,6 +34,8 @@ import androidx.compose.ui.unit.dp
 import com.dara.movemate.R
 import com.dara.movemate.ui.composables.components.LabelText
 import com.dara.movemate.ui.composables.components.SecondaryText
+import com.dara.movemate.ui.theme.Dimens
+import com.dara.movemate.ui.theme.Dimens.tweenAnimationDuration
 
 @Composable
 fun PackagingComponent() {
@@ -46,9 +48,9 @@ fun PackagingComponent() {
     AnimatedVisibility(
         visible = animateComponents,
         enter = slideInVertically(
-            animationSpec = tween(1000),
+            animationSpec = tween(tweenAnimationDuration),
             initialOffsetY = { fullHeight -> fullHeight * 2 })
-                + fadeIn(animationSpec = tween(3000)),
+                + fadeIn(animationSpec = tween(tweenAnimationDuration)),
     ) {
         Column(
             modifier = Modifier

@@ -39,6 +39,8 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import com.dara.movemate.R
+import com.dara.movemate.ui.theme.Dimens
+import com.dara.movemate.ui.theme.Dimens.tweenAnimationDuration
 import com.dara.movemate.ui.theme.MovemateColors
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -62,7 +64,7 @@ fun SearchRow(
         modifier = Modifier
             .padding(horizontal = 16.dp)
             .animateContentSize(
-                animationSpec = tween(2000)
+                animationSpec = tween(tweenAnimationDuration)
             )
             .fillMaxWidth()
             .focusRequester(focusRequester)
