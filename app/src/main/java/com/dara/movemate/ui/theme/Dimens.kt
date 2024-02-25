@@ -9,4 +9,6 @@ object Dimens {
     val PaddingHalf = 8.dp
     val PaddingQuarter = 4.dp
 
+    val tweenAnimationDuration = 500
+
 }

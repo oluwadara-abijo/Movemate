@@ -2,7 +2,6 @@ package com.dara.movemate.ui.composables.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -22,8 +21,6 @@ import com.dara.movemate.data.Shipment
 import com.dara.movemate.data.ShipmentStatus
 import com.dara.movemate.data.Vehicle
 import com.dara.movemate.ui.composables.Screen
-import com.dara.movemate.ui.composables.components.LabelText
-import com.dara.movemate.ui.theme.Dimens
 
 @Composable
 fun HomeScreen(
@@ -58,25 +55,7 @@ fun HomeScreen(
                 }
             } else {
                 LazyColumn {
-                    item {
-                        LabelText(
-                            textId = R.string.tracking,
-                            paddingValues = PaddingValues(
-                                top = 24.dp,
-                                start = Dimens.DefaultPadding
-                            )
-                        )
-                    }
                     item { TrackingCard(currentShipment = currentShipment) }
-                    item {
-                        LabelText(
-                            textId = R.string.available_vehicles,
-                            paddingValues = PaddingValues(
-                                top = 24.dp,
-                                start = Dimens.DefaultPadding
-                            )
-                        )
-                    }
                     item { VehiclesCarousel(vehicles = availableVehicles) }
                 }
             }

@@ -1,5 +1,10 @@
 package com.dara.movemate.ui.composables.calculate
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
@@ -16,6 +21,7 @@ import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -31,6 +37,8 @@ import com.dara.movemate.R
 import com.dara.movemate.data.Category
 import com.dara.movemate.ui.composables.components.LabelText
 import com.dara.movemate.ui.composables.components.SecondaryText
+import com.dara.movemate.ui.theme.Dimens
+import com.dara.movemate.ui.theme.Dimens.tweenAnimationDuration
 import com.dara.movemate.ui.theme.navy_blue
 
 @Composable
@@ -44,20 +52,34 @@ fun CategoriesComponent() {
         Category("Product"),
         Category("Others"),
     )
-    Column(
-        Modifier
-            .fillMaxWidth()
-            .padding(top = 24.dp)
+    var animateComponents by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        animateComponents = true
+    }
+
+    AnimatedVisibility(
+        visible = animateComponents,
+        enter = slideInVertically(
+            animationSpec = tween(tweenAnimationDuration),
+            initialOffsetY = { fullHeight -> fullHeight * 2 })
+                + fadeIn(animationSpec = tween(tweenAnimationDuration)),
     ) {
-        LabelText(
-            textId = R.string.categories,
-        )
-        SecondaryText(
-            text = stringResource(id = R.string.what_are_you_sending),
-            modifier = Modifier.padding(top = 6.dp)
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        CategoryChips(categories)
+        Column(
+            Modifier
+                .fillMaxWidth()
+                .padding(top = 24.dp)
+        ) {
+            LabelText(
+                textId = R.string.categories,
+            )
+            SecondaryText(
+                text = stringResource(id = R.string.what_are_you_sending),
+                modifier = Modifier.padding(top = 6.dp)
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            CategoryChips(categories)
+        }
     }
 }
 
@@ -66,12 +88,25 @@ fun CategoriesComponent() {
 fun CategoryChips(
     categories: List<Category>
 ) {
+    var animateComponents by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        animateComponents = true
+    }
 
     FlowRow(
         modifier = Modifier.fillMaxWidth(),
         maxItemsInEachRow = 4
     ) {
-        categories.forEach { CategoryChip(category = it) }
+        categories.forEach {
+            AnimatedVisibility(
+                visible = animateComponents,
+                enter = slideInHorizontally(
+                    animationSpec = tween(tweenAnimationDuration),
+                    initialOffsetX = { fullWidth -> fullWidth * 4 })
+                        + fadeIn(animationSpec = tween(tweenAnimationDuration)),
+            ) { CategoryChip(category = it) }
+        }
     }
 }
 

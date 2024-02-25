@@ -1,5 +1,9 @@
 package com.dara.movemate.ui.composables.home
 
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -35,6 +39,8 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import com.dara.movemate.R
+import com.dara.movemate.ui.theme.Dimens
+import com.dara.movemate.ui.theme.Dimens.tweenAnimationDuration
 import com.dara.movemate.ui.theme.MovemateColors
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -57,6 +63,9 @@ fun SearchRow(
     TextField(
         modifier = Modifier
             .padding(horizontal = 16.dp)
+            .animateContentSize(
+                animationSpec = tween(tweenAnimationDuration)
+            )
             .fillMaxWidth()
             .focusRequester(focusRequester)
             .onFocusChanged {

@@ -1,5 +1,8 @@
 package com.dara.movemate.ui.composables.home
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideInHorizontally
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -11,6 +14,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.draw.scale
@@ -23,9 +31,16 @@ import androidx.compose.ui.unit.sp
 import com.dara.movemate.R
 import com.dara.movemate.data.Vehicle
 import com.dara.movemate.ui.theme.Dimens.DefaultPadding
+import com.dara.movemate.ui.theme.Dimens.tweenAnimationDuration
 
 @Composable
 fun VehicleCard(vehicle: Vehicle) {
+    var animateComponents by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        animateComponents = true
+    }
+
     Column(
         modifier = Modifier
             .size(height = 230.dp, width = 210.dp)
@@ -46,21 +61,33 @@ fun VehicleCard(vehicle: Vehicle) {
             color = Gray,
             fontSize = 16.sp
         )
-        Image(
-            painter = painterResource(vehicle.icon),
-            contentDescription = null,
-            modifier = Modifier
-                .size(150.dp)
-                .scale(1.3F)
-                .offset(x = 48.dp,y=-(16).dp)
-        )
+        AnimatedVisibility(
+            visible = animateComponents,
+            enter = slideInHorizontally(
+                initialOffsetX = { fullWidth -> fullWidth * 3 },
+                animationSpec = tween(durationMillis = tweenAnimationDuration)
+            )
+        ) {
+            Image(
+                painter = painterResource(vehicle.icon),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(150.dp)
+                    .scale(1.3F)
+                    .offset(x = 48.dp, y = -(16).dp)
+            )
+        }
     }
 }
 
 @Preview
 @Composable
 fun VehicleCardPreview() {
-    Box(modifier = Modifier.background(Gray).fillMaxSize()) {
+    Box(
+        modifier = Modifier
+            .background(Gray)
+            .fillMaxSize()
+    ) {
         VehicleCard(Vehicle("Ocean freight", "International", R.drawable.ship))
     }
 }

@@ -9,7 +9,6 @@
 local.properties
 
 # Intellij
-*.iml
 .idea/*
 !.idea/codeStyleSettings.xml
 .idea/deploymentTargetDropDown.xml

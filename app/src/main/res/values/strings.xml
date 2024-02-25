@@ -24,4 +24,5 @@
     <string name="arriving_today">Arriving today!</string>
     <string name="delivery_info">Your delivery, #%1$s from %2$s, is arriving today!</string>
     <string name="shipments">Shipments</string>
+    <string name="estimated_price">$ %1$d USD</string>
 </resources>

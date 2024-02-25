@@ -1,10 +1,15 @@
 package com.dara.movemate.ui.composables.home
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Arrangement.SpaceBetween
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,6 +24,11 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment.Companion.Bottom
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
@@ -34,11 +44,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dara.movemate.R
 import com.dara.movemate.data.Shipment
+import com.dara.movemate.ui.composables.components.LabelText
 import com.dara.movemate.ui.composables.components.MovemateDivider
 import com.dara.movemate.ui.theme.Dimens.DefaultPadding
 import com.dara.movemate.ui.theme.Dimens.PaddingHalf
 import com.dara.movemate.ui.theme.Dimens.PaddingQuarter
 import com.dara.movemate.ui.theme.Dimens.ProfilePictureSize
+import com.dara.movemate.ui.theme.Dimens.tweenAnimationDuration
 import com.dara.movemate.ui.theme.indicator_color
 import com.dara.movemate.ui.theme.light_orange
 import com.dara.movemate.ui.theme.receiver_box_background
@@ -49,99 +61,121 @@ import com.dara.movemate.utils.mapStatus
 fun TrackingCard(
     currentShipment: Shipment
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(DefaultPadding)
-            .background(
-                color = White,
-                shape = RoundedCornerShape(DefaultPadding)
-            )
-            .padding(vertical = 24.dp)
-            .clip(RoundedCornerShape(DefaultPadding)),
-    ) {
-        Row(modifier = Modifier.padding(horizontal = DefaultPadding)) {
-            Column {
-                Text(
-                    text = stringResource(R.string.shipment_number),
-                    color = Color.Gray,
-                    fontSize = 16.sp
-                )
-                Text(
-                    modifier = Modifier.padding(top = PaddingQuarter),
-                    text = currentShipment.id,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold
-                )
-            }
-            Spacer(modifier = Modifier.weight(1F))
-            Image(
-                painter = painterResource(id = R.drawable.truck),
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .size(ProfilePictureSize)
-            )
-        }
-        MovemateDivider(horizontalPadding = DefaultPadding)
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = DefaultPadding),
-            verticalAlignment = Bottom,
-            horizontalArrangement = SpaceBetween
-        ) {
-            Column {
-                ShipmentInfoWidget(
-                    title = stringResource(R.string.sender),
-                    description = currentShipment.sender,
-                    icon = R.drawable.box,
-                    backgroundColor = sender_box_background
-                )
-                Spacer(modifier = Modifier.height(32.dp))
-                ShipmentInfoWidget(
-                    title = stringResource(R.string.receiver),
-                    description = currentShipment.receiver,
-                    icon = R.drawable.box,
-                    backgroundColor = receiver_box_background
-                )
-            }
-            Spacer(modifier = Modifier.width(32.dp))
-            Column(
-                verticalArrangement = Arrangement.SpaceAround
-            ) {
-                ShipmentInfoWidget(
-                    title = stringResource(R.string.time),
-                    description = currentShipment.timeline,
-                    showIcon = false,
-                    showIndicator = true
-                )
-                Spacer(modifier = Modifier.height(32.dp))
-                ShipmentInfoWidget(
-                    title = stringResource(R.string.status),
-                    description = currentShipment.status.mapStatus(),
-                    showIcon = false
-                )
-            }
-        }
-        MovemateDivider()
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = CenterVertically,
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Icon(
-                imageVector = Icons.Default.Add,
-                contentDescription = null,
-                tint = light_orange
-            )
-            Text(
-                text = "Add Stop",
-                color = light_orange,
-                fontSize = 18.sp
-            )
-        }
+    var animateComponents by remember { mutableStateOf(false) }
 
+    LaunchedEffect(Unit) {
+        animateComponents = true
+    }
+
+    AnimatedVisibility(
+        visible = animateComponents,
+        enter = slideInVertically(
+            animationSpec = tween(tweenAnimationDuration),
+            initialOffsetY = { fullHeight -> fullHeight * 2 })
+                + fadeIn(animationSpec = tween(tweenAnimationDuration)),
+    ) {
+        Column {
+            LabelText(
+                textId = R.string.tracking,
+                paddingValues = PaddingValues(
+                    top = 24.dp,
+                    start = DefaultPadding
+                )
+            )
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(DefaultPadding)
+                    .background(
+                        color = White,
+                        shape = RoundedCornerShape(DefaultPadding)
+                    )
+                    .padding(vertical = 24.dp)
+                    .clip(RoundedCornerShape(DefaultPadding)),
+            ) {
+                Row(modifier = Modifier.padding(horizontal = DefaultPadding)) {
+                    Column {
+                        Text(
+                            text = stringResource(R.string.shipment_number),
+                            color = Color.Gray,
+                            fontSize = 16.sp
+                        )
+                        Text(
+                            modifier = Modifier.padding(top = PaddingQuarter),
+                            text = currentShipment.id,
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+                    Spacer(modifier = Modifier.weight(1F))
+                    Image(
+                        painter = painterResource(id = R.drawable.truck),
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .size(ProfilePictureSize)
+                    )
+                }
+                MovemateDivider(horizontalPadding = DefaultPadding)
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = DefaultPadding),
+                    verticalAlignment = Bottom,
+                    horizontalArrangement = SpaceBetween
+                ) {
+                    Column {
+                        ShipmentInfoWidget(
+                            title = stringResource(R.string.sender),
+                            description = currentShipment.sender,
+                            icon = R.drawable.box,
+                            backgroundColor = sender_box_background
+                        )
+                        Spacer(modifier = Modifier.height(32.dp))
+                        ShipmentInfoWidget(
+                            title = stringResource(R.string.receiver),
+                            description = currentShipment.receiver,
+                            icon = R.drawable.box,
+                            backgroundColor = receiver_box_background
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(32.dp))
+                    Column(
+                        verticalArrangement = Arrangement.SpaceAround
+                    ) {
+                        ShipmentInfoWidget(
+                            title = stringResource(R.string.time),
+                            description = currentShipment.timeline,
+                            showIcon = false,
+                            showIndicator = true
+                        )
+                        Spacer(modifier = Modifier.height(32.dp))
+                        ShipmentInfoWidget(
+                            title = stringResource(R.string.status),
+                            description = currentShipment.status.mapStatus(),
+                            showIcon = false
+                        )
+                    }
+                }
+                MovemateDivider()
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Add,
+                        contentDescription = null,
+                        tint = light_orange
+                    )
+                    Text(
+                        text = "Add Stop",
+                        color = light_orange,
+                        fontSize = 18.sp
+                    )
+                }
+            }
+        }
     }
 }
 
