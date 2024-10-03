@@ -28,7 +28,6 @@ import com.dara.movemate.ui.composables.calculate.CalculateScreen
 import com.dara.movemate.ui.composables.calculate.EstimateScreen
 import com.dara.movemate.ui.composables.home.HomeScreen
 import com.dara.movemate.ui.composables.shipment.ShipmentScreen
-import com.dara.movemate.ui.theme.Dimens
 import com.dara.movemate.ui.theme.Dimens.tweenAnimationDuration
 import com.dara.movemate.ui.theme.MovemateColors
 

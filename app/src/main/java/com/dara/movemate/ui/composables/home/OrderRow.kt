@@ -4,7 +4,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -18,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight.Companion.SemiBold
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -36,9 +39,9 @@ fun OrderRow(order: Order) {
     ) {
         Icon(
             modifier = Modifier
+                .size(40.dp)
                 .background(MovemateColors.primary, CircleShape)
-                .size(32.dp)
-                .padding(4.dp),
+                .padding(6.dp),
             painter = painterResource(id = R.drawable.packaging_box),
             contentDescription = null,
             tint = Color.White
@@ -49,19 +52,21 @@ fun OrderRow(order: Order) {
         ) {
             Text(
                 text = order.name,
-                fontWeight = SemiBold
+                fontWeight = SemiBold,
+                fontSize = 18.sp
             )
+            Spacer(Modifier.height(2.dp))
             Row(verticalAlignment = CenterVertically) {
                 SecondaryText(
                     text = order.id,
-                    fontSize = 14.sp
+                    fontSize = 16.sp
                 )
                 SecondaryText(
                     text = "•",
-                    fontSize = 14.sp,
+                    fontSize = 20.sp,
                     paddingValues = PaddingValues(horizontal = 4.dp)
                 )
-                SecondaryText(text = order.sender, fontSize = 12.sp)
+                SecondaryText(text = order.sender, fontSize = 14.sp)
                 Icon(
                     modifier = Modifier
                         .size(18.dp)
@@ -72,7 +77,9 @@ fun OrderRow(order: Order) {
                 )
                 SecondaryText(
                     text = order.receiver,
-                    fontSize = 14.sp
+                    fontSize = 14.sp,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
             }
         }

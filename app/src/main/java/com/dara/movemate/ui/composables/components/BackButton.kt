@@ -32,7 +32,7 @@ fun BackButton(
         Icon(
             modifier = Modifier
                 .padding(start = 12.dp)
-                .size(48.dp)
+                .size(36.dp)
                 .clickable { navigateBack() },
             imageVector = Icons.Default.KeyboardArrowLeft,
             contentDescription = null,

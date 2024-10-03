@@ -53,21 +53,21 @@ fun ShipmentCard(shipment: Shipment) {
             modifier = Modifier
                 .padding(top = 12.dp, start = 16.dp, end = 16.dp)
                 .background(
-                    color = Color.White,
+                    color = Color.White.copy(alpha = 0.5f),
                     shape = RoundedCornerShape(24.dp)
                 )
-                .padding(12.dp)
+                .padding(16.dp)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Column(modifier = Modifier.weight(2F)) {
+            Column(modifier = Modifier.weight(3F)) {
                 StatusPill(status = shipment.status)
                 Text(
                     modifier = Modifier.padding(top = 4.dp),
                     text = stringResource(id = R.string.arriving_today),
                     fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp
+                    fontSize = 18.sp
                 )
                 Text(
                     modifier = Modifier.padding(top = 4.dp),
@@ -76,7 +76,7 @@ fun ShipmentCard(shipment: Shipment) {
                         shipment.id,
                         shipment.sender
                     ),
-                    fontSize = 12.sp,
+                    fontSize = 14.sp,
                     color = Color.Gray,
                     lineHeight = 16.sp
                 )
@@ -87,7 +87,7 @@ fun ShipmentCard(shipment: Shipment) {
                     Text(
                         text = shipment.amount,
                         color = MovemateColors.primary,
-                        fontSize = 12.sp,
+                        fontSize = 14.sp,
                         fontWeight = FontWeight.Bold
                     )
                     Text(
@@ -98,8 +98,7 @@ fun ShipmentCard(shipment: Shipment) {
                     )
                     Text(
                         text = shipment.date,
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.SemiBold
+                        fontSize = 14.sp,
                     )
                 }
             }

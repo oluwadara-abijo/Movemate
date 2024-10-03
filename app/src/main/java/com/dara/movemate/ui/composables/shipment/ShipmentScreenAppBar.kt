@@ -2,6 +2,7 @@ package com.dara.movemate.ui.composables.shipment
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
@@ -54,8 +55,11 @@ fun ShipmentScreenAppBar(
 
     val appBarHeight by animateDpAsState(
         targetValue = if (animateComponents) 113.dp else 180.dp,
-        animationSpec = tween(durationMillis = tweenAnimationDuration),
-        label = "offset"
+        animationSpec = tween(
+            durationMillis = tweenAnimationDuration,
+            easing = LinearEasing
+        ),
+        label = "offset",
     )
 
     LaunchedEffect(Unit) {
@@ -64,10 +68,10 @@ fun ShipmentScreenAppBar(
 
     Column(
         modifier = Modifier
-            .animateContentSize()
-            .fillMaxWidth()
-            .height(appBarHeight)
             .background(MovemateColors.primary)
+            .animateContentSize()
+            .height(appBarHeight)
+            .fillMaxWidth()
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -117,11 +121,12 @@ fun ShipmentTabRow(
             divider = { Divider(color = Transparent) },
             indicator = { tabPositions ->
                 AnimatedVisibility(
-                    visible = true,
+                    visible = animateComponents,
                     enter = slideInVertically(
                         animationSpec = tween(tweenAnimationDuration),
-                        initialOffsetY = { fullHeight -> fullHeight * 2 })
-                ) {
+                        initialOffsetY = { fullHeight -> fullHeight * 3 })
+                )
+                {
                     TabRowDefaults.Indicator(
                         modifier = Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex]),
                         color = MovemateColors.secondary

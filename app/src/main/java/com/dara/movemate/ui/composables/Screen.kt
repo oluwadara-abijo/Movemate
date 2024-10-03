@@ -14,7 +14,7 @@ import com.dara.movemate.ui.theme.MovemateColors
 fun Screen(modifier: Modifier = Modifier, content: @Composable BoxScope.() -> Unit) {
     Box(
         modifier = modifier
-            .background(color = MovemateColors.background)
+            .background(color = Color.Gray.copy(alpha = 0.05f))
             .fillMaxSize(),
         content = content,
     )

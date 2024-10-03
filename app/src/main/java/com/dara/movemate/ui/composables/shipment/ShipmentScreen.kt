@@ -79,7 +79,7 @@ val shipments = listOf(
         receiver = "Chicago",
         status = InProgress,
         amount = "$1400 USD",
-        date = "Sep 20, 2023",
+        date = "Sep 20,2023",
         timeline = "2 - 3 days"
     ),
     Shipment(
@@ -89,7 +89,7 @@ val shipments = listOf(
         receiver = "Chicago",
         status = Pending,
         amount = "$650 USD",
-        date = "Sep 20, 2023",
+        date = "Sep 20,2023",
         timeline = "2 - 3 days"
     ),
     Shipment(
@@ -99,7 +99,7 @@ val shipments = listOf(
         receiver = "Chicago",
         status = Pending,
         amount = "$650 USD",
-        date = "Sep 20, 2023",
+        date = "Sep 20,2023",
         timeline = "2 - 3 days"
     ),
     Shipment(
@@ -109,7 +109,7 @@ val shipments = listOf(
         receiver = "Chicago",
         status = Loading,
         amount = "$230 USD",
-        date = "Sep 20, 2023",
+        date = "Sep 20,2023",
         timeline = "2 - 3 days"
     ),
     Shipment(
@@ -119,7 +119,7 @@ val shipments = listOf(
         receiver = "Chicago",
         status = Loading,
         amount = "$230 USD",
-        date = "Sep 20, 2023",
+        date = "Sep 20,2023",
         timeline = "2 - 3 days"
     ),
     Shipment(
@@ -129,7 +129,7 @@ val shipments = listOf(
         receiver = "Chicago",
         status = InProgress,
         amount = "$370 USD",
-        date = "Sep 20, 2023",
+        date = "Sep 20,2023",
         timeline = "2 - 3 days"
     ),
     Shipment(
@@ -139,7 +139,7 @@ val shipments = listOf(
         receiver = "Chicago",
         status = Pending,
         amount = "$370 USD",
-        date = "Sep 20, 2023",
+        date = "Sep 20,2023",
         timeline = "2 - 3 days"
     ),
     Shipment(
@@ -149,7 +149,7 @@ val shipments = listOf(
         receiver = "Chicago",
         status = InProgress,
         amount = "$3570 USD",
-        date = "Sep 20, 2023",
+        date = "Sep 20,2023",
         timeline = "2 - 3 days"
     ),
     Shipment(
@@ -159,7 +159,7 @@ val shipments = listOf(
         receiver = "Chicago",
         status = Cancelled,
         amount = "$370 USD",
-        date = "Sep 20, 2023",
+        date = "Sep 20,2023",
         timeline = "2 - 3 days"
     ),
     Shipment(
@@ -169,7 +169,7 @@ val shipments = listOf(
         receiver = "Chicago",
         status = Pending,
         amount = "$370 USD",
-        date = "Sep 20, 2023",
+        date = "Sep 20,2023",
         timeline = "2 - 3 days"
     ),
     Shipment(
@@ -179,7 +179,7 @@ val shipments = listOf(
         receiver = "Chicago",
         status = Completed,
         amount = "$370 USD",
-        date = "Sep 20, 2023",
+        date = "Sep 20,2023",
         timeline = "2 - 3 days"
     ),
 )

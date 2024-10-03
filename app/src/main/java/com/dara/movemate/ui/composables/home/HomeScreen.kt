@@ -42,7 +42,7 @@ fun HomeScreen(
                     modifier = Modifier
                         .padding(16.dp)
                         .background(
-                            color = Color.White,
+                            color = Color.White.copy(alpha = 0.5f),
                             shape = RoundedCornerShape(16.dp)
                         )
                 ) {

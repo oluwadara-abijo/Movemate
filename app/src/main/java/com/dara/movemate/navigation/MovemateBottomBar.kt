@@ -62,10 +62,10 @@ fun MovemateBottomBar(
     AnimatedVisibility(
         visible = isVisible,
         enter = slideInVertically(
-            animationSpec = tween(tweenAnimationDuration),
+            animationSpec = tween(500),
             initialOffsetY = { fullHeight -> fullHeight * 2 }),
         exit = slideOutVertically(
-            animationSpec = tween(tweenAnimationDuration),
+            animationSpec = tween(1000),
             targetOffsetY = { fullHeight -> fullHeight * 2 })
     ) {
 
@@ -76,12 +76,9 @@ fun MovemateBottomBar(
                 startingPoint = startingPoint
             )
 
-            Spacer(modifier = Modifier.size(8.dp))
-
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 12.dp),
             ) {
                 BOTTOM_TABS.forEach { tab ->
                     BottomTabItem(
@@ -95,8 +92,8 @@ fun MovemateBottomBar(
                     )
                 }
             }
-        }
 
+        }
     }
 }
 
@@ -113,6 +110,7 @@ fun BottomTabItem(
             .clickable {
                 onTabSelected(tab)
             }
+            .padding(top = 16.dp),
     ) {
         val color = if (isSelected) MovemateColors.primary else Color.Gray
         Icon(
@@ -139,7 +137,10 @@ fun Indicator(width: Dp, startingPoint: Int) {
 
     val offset by animateIntOffsetAsState(
         targetValue = IntOffset(x = newPosition, y = 0),
-        animationSpec = tween(durationMillis = tweenAnimationDuration, easing = FastOutSlowInEasing),
+        animationSpec = tween(
+            durationMillis = tweenAnimationDuration,
+            easing = FastOutSlowInEasing
+        ),
         label = "offset"
     )
 
