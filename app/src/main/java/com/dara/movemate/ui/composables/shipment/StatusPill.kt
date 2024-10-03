@@ -10,7 +10,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Green
 import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.graphics.Color.Companion.Yellow
@@ -24,7 +23,6 @@ import com.dara.movemate.data.ShipmentStatus
 import com.dara.movemate.ui.theme.MovemateColors
 import com.dara.movemate.ui.theme.blue_text
 import com.dara.movemate.ui.theme.green_text
-import com.dara.movemate.ui.theme.navy_blue
 import com.dara.movemate.ui.theme.pale_grey
 import com.dara.movemate.utils.mapStatus
 

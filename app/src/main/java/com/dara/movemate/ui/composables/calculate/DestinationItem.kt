@@ -21,14 +21,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.dara.movemate.R
 import com.dara.movemate.ui.theme.Dimens
 import com.dara.movemate.ui.theme.MovemateColors
-import com.dara.movemate.ui.theme.indicator_color
 import com.dara.movemate.ui.theme.navy_blue
 
 @Composable

@@ -34,7 +34,6 @@ import androidx.compose.ui.unit.dp
 import com.dara.movemate.R
 import com.dara.movemate.ui.composables.components.LabelText
 import com.dara.movemate.ui.composables.components.SecondaryText
-import com.dara.movemate.ui.theme.Dimens
 import com.dara.movemate.ui.theme.Dimens.tweenAnimationDuration
 
 @Composable

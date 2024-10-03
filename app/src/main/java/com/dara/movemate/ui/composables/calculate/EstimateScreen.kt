@@ -37,7 +37,6 @@ import com.dara.movemate.R
 import com.dara.movemate.ui.composables.Screen
 import com.dara.movemate.ui.composables.components.ActionButton
 import com.dara.movemate.ui.composables.components.SecondaryText
-import com.dara.movemate.ui.theme.Dimens
 import com.dara.movemate.ui.theme.Dimens.tweenAnimationDuration
 import com.dara.movemate.ui.theme.MovemateColors
 import com.dara.movemate.ui.theme.green_text

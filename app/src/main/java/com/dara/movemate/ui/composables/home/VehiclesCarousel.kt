@@ -21,7 +21,6 @@ import androidx.compose.ui.unit.dp
 import com.dara.movemate.R
 import com.dara.movemate.data.Vehicle
 import com.dara.movemate.ui.composables.components.LabelText
-import com.dara.movemate.ui.theme.Dimens
 import com.dara.movemate.ui.theme.Dimens.DefaultPadding
 import com.dara.movemate.ui.theme.Dimens.tweenAnimationDuration
 

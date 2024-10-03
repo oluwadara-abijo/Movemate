@@ -37,7 +37,6 @@ import com.dara.movemate.R
 import com.dara.movemate.data.Category
 import com.dara.movemate.ui.composables.components.LabelText
 import com.dara.movemate.ui.composables.components.SecondaryText
-import com.dara.movemate.ui.theme.Dimens
 import com.dara.movemate.ui.theme.Dimens.tweenAnimationDuration
 import com.dara.movemate.ui.theme.navy_blue
 
