@@ -1,5 +1,6 @@
 package com.dara.movemate.ui.composables.home
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -12,6 +13,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -22,6 +24,7 @@ import com.dara.movemate.data.ShipmentStatus
 import com.dara.movemate.data.Vehicle
 import com.dara.movemate.ui.composables.Screen
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun HomeScreen(
 ) {
@@ -38,6 +41,9 @@ fun HomeScreen(
                 }
             )
             if (isSearching) {
+                BackHandler {
+                    isSearching = false
+                }
                 LazyColumn(
                     modifier = Modifier
                         .padding(16.dp)

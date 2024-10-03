@@ -26,7 +26,7 @@ fun LabelText(
     Text(
         modifier = modifier.padding(paddingValues),
         text = stringResource(textId),
-        fontSize = 22.sp,
+        fontSize = 18.sp,
         fontWeight = fontWeight,
         color = textColor
     )
@@ -38,7 +38,7 @@ fun SecondaryText(
     modifier: Modifier = Modifier,
     paddingValues: PaddingValues = PaddingValues(),
     alignment: TextAlign? = null,
-    fontSize: TextUnit = 16.sp,
+    fontSize: TextUnit = 14.sp,
     fontWeight: FontWeight = FontWeight.Normal,
     maxLines: Int = Int.MAX_VALUE,
     overflow: TextOverflow = TextOverflow.Clip,

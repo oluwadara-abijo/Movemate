@@ -62,10 +62,10 @@ fun MovemateBottomBar(
     AnimatedVisibility(
         visible = isVisible,
         enter = slideInVertically(
-            animationSpec = tween(500),
+            animationSpec = tween(800),
             initialOffsetY = { fullHeight -> fullHeight * 2 }),
         exit = slideOutVertically(
-            animationSpec = tween(1000),
+            animationSpec = tween(800),
             targetOffsetY = { fullHeight -> fullHeight * 2 })
     ) {
 

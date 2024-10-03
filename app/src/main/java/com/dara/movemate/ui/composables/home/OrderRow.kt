@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.text.font.FontWeight.Companion.SemiBold
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -52,7 +53,7 @@ fun OrderRow(order: Order) {
         ) {
             Text(
                 text = order.name,
-                fontWeight = SemiBold,
+                fontWeight = Bold,
                 fontSize = 18.sp
             )
             Spacer(Modifier.height(2.dp))

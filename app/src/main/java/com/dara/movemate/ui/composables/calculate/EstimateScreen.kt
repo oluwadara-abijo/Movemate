@@ -1,6 +1,7 @@
 package com.dara.movemate.ui.composables.calculate
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateIntAsState
 import androidx.compose.animation.core.tween
@@ -48,12 +49,9 @@ fun EstimateScreen(
     var animateComponents by remember { mutableStateOf(false) }
     var price by remember { mutableIntStateOf(1070) }
     val priceCounter by animateIntAsState(
-        targetValue = price,
-        animationSpec = tween(
-            durationMillis = tweenAnimationDuration,
-            easing = LinearEasing
-        ),
-        label = "price"
+        targetValue = price, animationSpec = tween(
+            durationMillis = 1500, easing = FastOutSlowInEasing
+        ), label = "price"
     )
 
     LaunchedEffect(Unit) {
@@ -93,8 +91,7 @@ fun EstimateScreen(
                 }
             }
             AnimatedVisibility(
-                visible = animateComponents,
-                enter = scaleIn(
+                visible = animateComponents, enter = scaleIn(
                     animationSpec = tween(tweenAnimationDuration)
                 ) + fadeIn()
             ) {
